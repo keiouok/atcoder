@@ -18,28 +18,17 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-m, d = MAP()
+# a, b = MAP()
+# n = INT()
+# a, b, c = MAP()
+n = INT()
+H = LIST()
+R = [0]*n
+for i in range(n-1):
+    if H[i] >= H[i+1]:
+        R[i+1] = R[i]+1
+print(max(R))
+        
+    # while(1):
 
-# print(d1)
-# print(l)
-count = 0
-for i in range(1, m+1):
-    for j in range(1, d+1):
-        if j >= 20:
-            d1 = j % 10
-            d10 = j // 10
-            # print(d1)
-
-            if d1 >= 2:
-                # print("d1:"d1)
-                
-                if d1 * d10 == i:
-                    count += 1
-
-        # if d1 >= 2:
-        #     if d10 >= 2:
-        #         if d1 * d10 == m:
-        #             count += 1
-
-
-print(count)
+    # for j in range(n):

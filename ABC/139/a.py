@@ -18,28 +18,15 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-m, d = MAP()
+S = list(input())
+T = list(input())
 
-# print(d1)
-# print(l)
 count = 0
-for i in range(1, m+1):
-    for j in range(1, d+1):
-        if j >= 20:
-            d1 = j % 10
-            d10 = j // 10
-            # print(d1)
-
-            if d1 >= 2:
-                # print("d1:"d1)
-                
-                if d1 * d10 == i:
-                    count += 1
-
-        # if d1 >= 2:
-        #     if d10 >= 2:
-        #         if d1 * d10 == m:
-        #             count += 1
-
+for i in range(len(S)):
+    if S[i] == T[i]:
+        count += 1
+# a, b = MAP()
+# n = INT()
+# a, b, c = MAP()
 
 print(count)
