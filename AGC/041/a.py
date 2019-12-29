@@ -31,5 +31,53 @@ def lcm(a, b):
     y = a*b / gcd(a, b)
     return int(y)
 
-N = INT()
-print(N)
+# N = INT()
+# print(N)
+N, A, B = MAP()
+# guusuu
+if (A - B) % 2 == 0:
+  s = B - A
+  ans = s // 2
+  print(ans)
+# kisuu
+else:
+  # if N - A <= B
+  # k = B - A
+  # m = min(N - A, B)
+  if A - 1 <= N - B:
+    # A ni tikazuku
+    # 最初の移動
+    s = A - 1
+    # Bが残り移動する距離
+    b = B - (A - 1) - 1
+
+    ans = s + (b + 1) // 2
+    # print(ans)
+  else:
+    s = N - B
+    a = N - (A + s) + 1
+    ans = s +  a // 2
+    # ans = A + s + 1
+    # ans = ans // 2
+  print(ans)
+  #   ans =(B - A + 1)//2
+
+  # else:
+  #   a = N - (A +  N - B )
+  #   ans = a // 2
+  # print(ans)
+    
+
+
+
+  # print(ans - k)
+  # if A <= N - B:
+  #   print(B - A)
+  # else:
+  #   print(B - A)
+  # # k = B - A
+  # ans = k+min(N - A, N - B)
+  # B - min(N - A, N - B)
+  # print(ans)
+
+
