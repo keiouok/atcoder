@@ -20,19 +20,37 @@ mod = 10 ** 9 + 7
 
 # 最小公倍数
 def gcd(a, b):
-  if a < b:
-      a, b = b, a
-  while a % b != 0:
-      a, b = b, a % b
-  return b
+	if a < b:
+		a, b = b, a
+	while a % b != 0:
+		a, b = b, a % b
+	return b
  
 # 最大公約数 
 def lcm(a, b):
-  y = a*b / gcd(a, b)
-  return int(y)
+	y = a*b / gcd(a, b)
+	return int(y)
 
-s, t = S_MAP()
+a, b, k = MAP()
 
-print(t+s)
+if a <= k:
+	k = k - a
+	a = 0
+	if b <= k:
+		b = 0
+	elif b > k:
+		b = b - k
+elif a > k:
+	a = a - k
+	
+print(a, b)
 
 
+
+
+# while k > 0:
+#   if a >= 1:
+#     a = a - 1
+#   elif b >= 1:
+#     b = b - 1
+#   k = k - 1

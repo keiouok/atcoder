@@ -28,11 +28,6 @@ def gcd(a, b):
  
 # 最大公約数 
 def lcm(a, b):
-  y = a*b / gcd(a, b)
-  return int(y)
-
-s, t = S_MAP()
-
-print(t+s)
-
-
+    y = a*b / gcd(a, b)
+    return int(y)
+ 
