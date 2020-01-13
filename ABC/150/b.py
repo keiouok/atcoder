@@ -31,10 +31,13 @@ def lcm(a, b):
   y = a*b / gcd(a, b)
   return int(y)
 
-k, x = MAP()
+n = INT()
+s = input()
 
-a = 500 * k
-if a >= x:
-  print("Yes")
-else:
-  print("No")
+count = 0
+abc = "ABC"
+for i in range(n-2):
+  if s[i:i+3] == abc:
+    count += 1
+print(count)
+

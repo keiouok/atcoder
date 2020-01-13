@@ -1,3 +1,4 @@
+# あけおめ，昨日の復習です．
 import sys, re, os
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
@@ -46,54 +47,56 @@ def surround(C): # Cはリスト
   D.append(first)
   return D
 
-
-
-# cx, cy：今いる場所
-# dx, dy：移動する分
-dx = [0, 1, 0, -1]
-dy = [1, 0, -1, 0]
-
 # default
+cx, cy = 0, 0
 sx, sy = 0, 0
 gx, gy = 0, 0
 
-data = [[0] * 502] * 502
-
-
+dx = [0, 1, 0, -1]
+dy = [1, 0, -1, 0]
 
 def dfs(cx, cy):
-  # nx = cx + dx
-  # ny = cy + dy
-  # 今いる座標がゴールだったら，たどりつく
   if cx == gx and cy == gy:
     return True
-  data[cy][cx] = "#"
-  for d in range(4):
-    nx = cx + dx[d]
-    ny = cy + dy[d]
+  else:
+    data[cy][cx] == "#"
+    for d in range(4):
+      nx = cx + dx[d]
+      ny = cy + dy[d]
     if data[ny][nx] != "#":
       f = dfs(nx, ny)
       if f == True:
         return True
   return False
 
-# for i in range(502):
-#   for j in range(502):
-    
 H, W = MAP()
-C = []
-for h in range(H):
-  c = list(input())
-  C.append(c)
-
-# 周りに壁"#"を作成
-print(C)
-print(surround(C))
+data = []
+for i in range(H):
+  d = list(input())
+  data.append(d)
 
 
+for y in range(len(data)):
+  for x in range(len(data[0])):
+    if data[y][x] == "s":
+      sx = x + 1
+      sy = y + 1
+
+for y in range(len(data)):
+  for x in range(len(data[0])):
+    if data[y][x] == "g":
+      gx = x + 1
+      gy = y + 1
+    
+
+data = surround(data)
+
+if dfs(sx, sy) == True:
+  print("Yes")
+else:
+  print("No")
 
 
-  
 
 
   

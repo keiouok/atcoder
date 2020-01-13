@@ -18,23 +18,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-# 最小公倍数
+# 最大公約数 
 def gcd(a, b):
   if a < b:
       a, b = b, a
   while a % b != 0:
       a, b = b, a % b
   return b
- 
-# 最大公約数 
+
+# 最小公倍数
 def lcm(a, b):
   y = a*b / gcd(a, b)
   return int(y)
 
-k, x = MAP()
+s = input()
+l = [chr(i) for i in range(97, 97+26)]
 
-a = 500 * k
-if a >= x:
-  print("Yes")
-else:
-  print("No")
+for i in range(len(l)):
+  if l[i] == s:
+    print(l[i+1])

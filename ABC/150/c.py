@@ -6,7 +6,8 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from fractions import gcd
- 
+import itertools
+
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -31,10 +32,21 @@ def lcm(a, b):
   y = a*b / gcd(a, b)
   return int(y)
 
-k, x = MAP()
+N = INT()
+P = LIST()
+Q = LIST()
+s = sorted(P)
 
-a = 500 * k
-if a >= x:
-  print("Yes")
-else:
-  print("No")
+
+# for i in range(N):
+#   a = P[i] * factorial(N - (i + 1))
+  # print(a)
+jun = list(itertools.permutations(s))
+for i, l in enumerate(jun):
+  if tuple(P) == l:
+    a = i
+  if tuple(Q) == l:
+    b = i
+print(abs(a-b))
+
+
