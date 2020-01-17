@@ -40,4 +40,35 @@ def lcm(a, b):
     return int(y)
 ```
 
+## list内をstring出力
+
+2重リストの展開表示(要素がintの場合はaの部分にmapをかけてint型をstr型にキャストしておく)
+
+```
+
+a = [[".", "#", "."], ["#", "#", "#"]]
+print(*["".join(x) for x in a], sep="\n")
+```
+```
+.#.
+```
+
+## 3 数以上の最小公倍数、最大公約数
+```
+python
+from functools import reduce
+from math import gcd as gcd_base  # from fractions import gcd
+gcd = lambda *numbers: reduce(gcd_base, numbers)  # 3 数以上の最大公約数
+```
+gcd(27, 18, 9)
+9
+```
+lcm_base = lambda x, y: (x * y) // gcd_base(x, y)
+lcm = lambda *numbers: reduce(lcm_base, numbers, 1)  # 3 数以上の最小公倍数
+lcm(27, 18, 9, 3)
+```
+54
+
+
+
 
