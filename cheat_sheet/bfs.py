@@ -20,7 +20,7 @@ mod = 10 ** 9 + 7
 
 s = deque([])
 
-# stack
+# スタック
 s.append(1)
 s.append(2)
 s.append(3)
@@ -28,20 +28,4 @@ s.pop()
 s.pop()
 s.pop()
 
-# queue
-q = deque([])
-q.append(1)
-q.append(2)
-q.append(3)
-q.popleft()
-q.popleft()
-q.popleft()
-
-# 2-1-1 部分和問題
-def dfs(i, sum):
-    
-
-
-
-
-
+# 
