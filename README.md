@@ -121,6 +121,7 @@ def is_prime(n):
 ```
 
 ## エラトステネスの篩
+ O(nloglogn), 素数列挙
 ```
 def sieve(n):
     is_prime = [True for _ in range(n+1)]
