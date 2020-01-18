@@ -2,6 +2,16 @@
 
 早く土から出たい．
 
+## 参考文献
+
+
+
+https://qiita.com/knakajima3027/items/b871631b8997a6d67223
+
+[python] いろいろな文字種のリストを作成
+
+https://qiita.com/okkn/items/3aef4458ed2269a59d63
+
 ## cheet_sheet
 
 ```
@@ -69,8 +79,350 @@ lcm(27, 18, 9, 3)
 ```
 54
 
+## 約数の列挙
+```
+def divisor(n): #nの約数を全て求める
+    i = 1
+    table = []
+    while i * i <= n:
+        if n%i == 0:
+            table.append(i)
+            table.append(n//i)
+        i += 1
+    table = list(set(table))
+    return table
+```
+## 素因数分解
+```
+#nを素因数分解したリストを返す
+def prime_decomposition(n):
+  i = 2
+  table = []
+  while i * i <= n:
+    while n % i == 0:
+      n /= i
+      table.append(i)
+    i += 1
+  if n > 1:
+    table.append(n)
+  return table
+```
+
+## 素数判定
+```
+#引数nが素数かどうかを判定
+def is_prime(n):
+    for i in range(2, n + 1):
+        if i * i > n:
+            break
+        if n % i == 0:
+            return False
+    return n != 1
+```
+
+## エラトステネスの篩
+```
+def sieve(n):
+    is_prime = [True for _ in range(n+1)]
+    is_prime[0] = False
+
+    for i in range(2, n+1):
+        if is_prime[i-1]:
+            j = 2 * i
+            while j <= n:
+                is_prime[j-1] = False
+                j += i
+    table = [ i for i in range(1, n+1) if is_prime[i-1]]
+    return is_prime, table
+```
+## べき乗
+```
+#xのn乗をmで割った余り
+def pos(x, n, m):
+    if n == 0:
+        return 1
+    res = pos(x*x%m, n//2, m)
+    if n%2 == 1:
+        res = res*x%m
+    return res
+```
+
+## bit生成
+```
+import itertools
+L = [0, 1] #生成する数字
+num = 3 #生成するビット数
+bit_list = list(itertools.product([0, 1], repeat=num))
+
+'''実行結果
+[(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
+'''
+```
+
+## 階乗
+```
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+
+#階乗
+ptr = list(itertools.permutations(seq)) #組み合わせ列挙 5!
+
+'''実行結果
+[('a', 'b', 'c', 'd', 'e'),
+ ('a', 'b', 'c', 'e', 'd'),
+ ('a', 'b', 'd', 'c', 'e'),
+ ('a', 'b', 'd', 'e', 'c'),
+           中略
+ ('e', 'd', 'c', 'a', 'b'),
+ ('e', 'd', 'c', 'b', 'a')]
+ '''
+
+ptr_num = len(list(itertools.permutations(seq))) #組み合わせ数 
+
+'''実行結果
+    120
+'''
+```
+
+## 順列
+```
+#nPa(順列)
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+ptr = list(itertools.permutations(seq, 3)) #順列列挙 5P3
+
+'''実行結果
+[('a', 'b', 'c'),
+ ('a', 'b', 'd'),
+ ('a', 'b', 'e'),
+ ('a', 'c', 'b'),
+       中略
+ ('e', 'd', 'a'),
+ ('e', 'd', 'b'),
+ ('e', 'd', 'c')]
+'''
+
+ptr_num = len(list(itertools.permutations(seq, 3))) #順列数
+
+'''実行結果
+    60
+'''
+```
+## 組み合わせ
+```
+#nCa (組み合わせ)
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+ptr = list(itertools.combinations(seq,3)) # 組み合わせ列挙 5C3
+
+'''実行結果
+[('a', 'b', 'c'),
+ ('a', 'b', 'd'),
+ ('a', 'b', 'e'),
+ ('a', 'c', 'd'),
+ ('a', 'c', 'e'),
+ ('a', 'd', 'e'),
+ ('b', 'c', 'd'),
+ ('b', 'c', 'e'),
+ ('b', 'd', 'e'),
+ ('c', 'd', 'e')]
+ '''
+```
+
+## 数え上げ
+```
+from collections import Counter
+arr = [1,1,4,6,1,1,35,1,5,1,3]
+d = Counter() #インスタンスを生成
+d.update(arr)
+print(d[1]) #d[数えたい値]
+
+'''実行結果
+6
+'''
+```
+
+## 多次元配列のソート
+```
+A = [[1, 2], [3, 1], [2, 5]]
+B = sorted(A, key=lambda x: x[0]) # 0番目の要素でソート
+C = sorted(A, key=lambda x: x[1]) # 1番目の要素でソート
+
+'''実行結果
+B = [[1, 2], [2, 5], [3, 1]]
+C = [[3, 1], [1, 2], [2, 5]]
+'''
+```
+
+## にぶたん
+```
+import bisect
+#ソートされたリストAにソートを崩さずに値xを挿入するとき、xの入るべきインデックスを返す。
+bisect.bisect(A,x)
+
+#リストAに値xを入れ、xが複数になるとき、一番左の値xのインデックスを返す
+bisect.bisect_left(A,x)
+
+#リストAに値xを入れ、xが複数になるとき、一番右の値xのインデックスを返す
+bisect.bisect_right(A,x)
+```
+
+## UnionFind
+```
+class UnionFind:
+    def __init__(self, n):
+        self.par = [i for i in range(n)] #親
+        self.rank = [0 for _ in range(n)] #根の深さ
+
+    #xの属する木の根を求める
+    def find(self, x):
+        if self.par[x] == x:
+            return x
+        else:
+            self.par[x] = self.find(self.par[x])
+            return self.par[x]
+
+    #xとyの属する集合のマージ
+    def unite(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+        if self.rank[x] < self.rank[y]:
+            self.par[x] = y
+        else:
+            self.par[y] = x
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
+
+    #xとyが同じ集合に属するかを判定
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+```
+
+## クラスカル法
+
+```
+#union-find木
+#クラスカル法にはUnion-find木が必要
+class UnionFind:
+    def __init__(self, n):
+        self.par = [i for i in range(n)] #親
+        self.rank = [0 for _ in range(n)] #根の深さ
+
+    #xの属する木の根を求める
+    def find(self, x):
+        if self.par[x] == x:
+            return x
+        else:
+            self.par[x] = self.find(self.par[x])
+            return self.par[x]
+
+    #xとyの属する集合のマージ
+    def unite(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+        if self.rank[x] < self.rank[y]:
+            self.par[x] = y
+        else:
+            self.par[y] = x
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
+
+    #xとyが同じ集合に属するかを判定
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
 
 
+#クラスカル法
+# V: 頂点集合(リスト) E: 辺集合[始点, 終点, 重み](リスト)
+class kruskal():
+    def __init__(self, V, E):
+        self.V = V
+        self.E = E
+        self.E.sort(key=lambda x: x[2]) #辺の重みでソート
 
+    def weight(self): #最小全域木の重み和を求める
+        UF = UnionFind(len(V)) #頂点数でUnion Find Treeを初期化
+        res = 0
+        for i in range(len(self.E)):
+            e = self.E[i]
 
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res += e[2]
 
+        return res
+
+    def edge(self):
+        UF = UnionFind(len(self.V)) #頂点数でUnion Find Treeを初期化
+        res_E = []
+        for i in range(len(self.E)):
+            e = self.E[i]
+
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res_E.append(e)
+
+        return res_E
+
+    def node(self):
+        UF = UnionFind(len(V)) #頂点数でUnion Find Treeを初期化
+        res_V = []
+        for i in range(len(E)):
+            e = E[i]
+
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res_V.append(e[0])
+                res_V.append(e[1])
+
+        return list(set(res_V))
+        
+        
+```
+
+## ワ―シャルフロイド法
+```
+#d[i][j]は2頂点間i, j間の移動コストを格納, Vは頂点数
+def warshall_floyd(d, V): 
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+
+    return d #d[i][j]に頂点i, j間の最短距離を格納
+```
+
+## 文字列生成
+```
+>>> import string
+>>> help(string)
+(中略)
+DATA
+    ascii_letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
+    ascii_uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    digits = '0123456789'
+    hexdigits = '0123456789abcdefABCDEF'
+    letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv...\xaf\xb0...
+    lowercase = 'abcdefghijklmnopqrstuvwxyz'
+    octdigits = '01234567'
+    printable = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU...
+    punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+    uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    whitespace = '\t\n\x0b\x0c\r '
+>>> string.digits
+'0123456789'
+```
+
+## アルファベット，英語，小文字
+```
+[chr(i) for i in range(97, 97+26)]
+# [chr(i) for i in range(ord('a'), ord('z')+1)]
+```
