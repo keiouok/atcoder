@@ -19,12 +19,16 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-H = INT()
-W = INT()
-N = INT()
-c = 0
-ans = 0
-while N > c:
-    c += max(H, W)
-    ans += 1
-print(ans)
+n, k, s = MAP()
+ 
+if s == 10 ** 9:
+  a = 1
+else:
+  a = 10 ** 9
+
+ans = [s] * k + [a] * (n - k)
+ 
+print(*ans)
+
+
+

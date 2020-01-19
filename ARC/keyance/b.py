@@ -19,12 +19,21 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-H = INT()
-W = INT()
 N = INT()
-c = 0
+l = []
+for i in range(N):
+  l.append(LIST())
+L = []
+for i in range(N):
+  b = l[i][0] - l[i][1]
+  a = l[i][0] + l[i][1]
+  L.append([a, b])
+L.sort()
+# print(L)
+t = -INF
 ans = 0
-while N > c:
-    c += max(H, W)
+for i in range(N):
+  if t <= L[i][1]:
     ans += 1
+    t = L[i][0]
 print(ans)
