@@ -6,6 +6,7 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from fractions import gcd
+
  
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
@@ -17,3 +18,13 @@ def S_LIST(): return list(map(str, input().split()))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+n = INT()
+L = []
+ans = 0
+for i in range(N):
+    a, b = LIST()
+    ans += b - a + 1
+print(ans)
+
+

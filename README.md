@@ -4,7 +4,9 @@
 
 ## 参考文献
 
+二次元配列
 
+http://sonickun.hatenablog.com/entry/2014/06/13/132821
 
 https://qiita.com/knakajima3027/items/b871631b8997a6d67223
 
@@ -426,4 +428,17 @@ DATA
 ```
 [chr(i) for i in range(97, 97+26)]
 # [chr(i) for i in range(ord('a'), ord('z')+1)]
+```
+
+## 二次元配列，書き変わらないようにリスト内包で作成せよ
+
+悪い例，他の要素の置き換わる
+```
+arr = [[0] * 10] * 10
+```
+
+いい例
+
+```
+arr = [[0 for i in range(10)] for j in range(10)]
 ```

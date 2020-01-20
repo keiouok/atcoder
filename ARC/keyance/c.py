@@ -27,7 +27,7 @@ else:
   a = 10 ** 9
 
 ans = [s] * k + [a] * (n - k)
- 
+
 print(*ans)
 
 
