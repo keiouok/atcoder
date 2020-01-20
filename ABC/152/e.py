@@ -33,27 +33,21 @@ mod = 10 ** 9 + 7
 #     return b
 
 
-## 最大公約数 
-def lcm(a, b):
-    y = a*b / gcd(a, b)
-    return int(y)
 
 def many_lcm(l):
-    for i in range(len(l)-1):
-        if i == 0:
-            ans = lcm(l[0], l[1])
-        else:
-            ans = lcm(l[i+1], ans)
-    return ans
+    tmp = l[0]
+    for i in range(1, len(l)):
+        tmp = tmp * l[i]//gcd(tmp, l[i])
+    return tmp
 N = INT()
 A = LIST()
 
 lm = many_lcm(A)
-# print(l)
-B = []
+ans = 0
 for a in A:
-    B.append(lm // a)
-print(sum(B) % mod)
+    ans += lm // a
+    
+print(ans % mod)
 
 
 
