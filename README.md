@@ -435,3 +435,40 @@ arr = [[0] * 10] * 10
 ```
 arr = [[0 for i in range(10)] for j in range(10)]
 ```
+
+
+## 素数列挙 O(NloglogN) (by tonnnura)
+```
+def primes_for(n):
+  is_prime = [True] * (n + 1)
+  is_prime[0] = False
+  is_prime[1] = False
+  for i in range(2, n + 1):
+      for j in range(i * 2, n + 1, i):
+          is_prime[j] = False
+  return [i for i in range(n + 1) if is_prime[i]]
+```
+## ABC035D ダイクストラ法
+```
+def dijkstra(E, start):
+    N_d = len(E)
+    dist = [INF] * N_d
+    dist[start] = 0
+    q = [(0, start)]
+    while q:
+        dist_v, v = heappop(q)
+        if dist[v] != dist_v:
+            continue
+        for u, dist_vu in E[v]:
+            dist_u = dist_v + dist_vu
+            if dist_u < dist[u]:
+                dist[u] = dist_u
+                heappush(q, (dist_u, u))
+    return dist
+```
+E は 連結リスト(多分) startは始点
+
+E[a].append(b, c)
+
+意味するのは，「a番目のノードがbと繋がっており，コストはc」 これが連結リスト．すべてのノードからダイクストラを求める必要はない．0スタートを逆順にすればよいだけ．大事．
+
