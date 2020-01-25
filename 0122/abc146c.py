@@ -24,30 +24,27 @@ mod = 10 ** 9 + 7
 # 10 7 100
 # 10 * N + 7 * d(N)
 
+def ret(a, b, N):
+    return a * N + b * len(str(N))
 # bigger number, more expensive
 def main():
     a, b, x = MAP()
     # below x en 
-    k = 1
-    # k桁で買えるもの
-    # 10 ** k <= N < 10 ** (k + 1)
-    # k = 1なら，a * 10 + b * 2 <= x，これがx以下なら，k = 2に変わる．xより大きければ，k=1のまま，なのでOK
-    while a * (10 ** k) + b * (k + 1) <= x: # k桁における最小の価格
-        k += 1
-    # 二分探索すべき一番大きい桁が分かった
-    # 整数10 ** 9以上を買うには10 ** 9 + 0円が必要
-    if k >= 10:
-        print(10 ** 9)
-        exit()
-    n = (x - (b * k)) // a
-    if len(str(n)) != k:
-        n -= 1
-    print(0 if n <= 0 else n)
+    left = 0
+    right = x + 1
 
-    # if n <= 0:
-    #     print(0)
-    # else:
-    #     print(n)
+    # if len(str(x)) >= 10:
+    #     print(10 ** 9)
+    #     exit()
+    while(right - left > 1):
+        mid = (right + left) // 2
+        r = ret(a, b, mid)
+        if r > x:
+            right = mid
+        else:
+            left = mid
+    print(min(left, 10 ** 9))
+    
 if __name__ == "__main__":
     main()
 
