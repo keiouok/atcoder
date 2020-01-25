@@ -472,3 +472,28 @@ E[a].append(b, c)
 
 意味するのは，「a番目のノードがbと繋がっており，コストはc」 これが連結リスト．すべてのノードからダイクストラを求める必要はない．0スタートを逆順にすればよいだけ．大事．
 
+## クリップボードにコピー
+```
+cat test.txt | xsel --clipboard --input
+```
+
+## 表とかリストを見やすくしましょう
+```
+print(*visited_copy, sep="\n")
+```
+# まわりを#で囲む
+```
+def surround(C): # Cはリスト 
+    H = len(C)
+    W = len(C[0])
+    D = []
+    first = ["#"] * (W + 2)
+    D.append(first)
+    for h in range(H):
+        # for w in range(W):
+        C[h].append("#")
+        C[h].insert(0, "#")
+        D.append(C[h])
+    D.append(first)
+    return D
+```
