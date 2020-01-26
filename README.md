@@ -547,3 +547,7 @@ def surround(C): # Cはリスト
     D.append(first)
     return D
 ```
+## Counterソート 
+```
+d = sorted(d.items(), key=lambda pair: pair[1], reverse=True)
+```
