@@ -18,23 +18,25 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, M = MAP()
-A = [LIST() for i in range(N)]
-C = [LIST() for i in range(M)]
-L = []
-for i in range(N):
-    index = 0
-    mi = INF
-    for j in range(M):
-        a, b = A[i][0], A[i][1]
-        c, d = C[j][0], C[j][1]
-        m = abs(a - c) + abs(b - d)
-        if mi > min(mi, m):
-            mi = min(mi, m)
-            index = j
-    L.append(index)
-for l in L:
-    print(l+1)
+n, m = MAP()
 
+l = [LIST() for i in range(m)]
+p = LIST()
 
+# bits全探索
+bits = product([0, 1], repeat=n)
+ans = 0
+#print(list(bits))
 
+for b in bits:
+    light = 0
+    for i, s_l in enumerate(l):
+        on = 0
+        for s in s_l[1:]:
+            on += b[s-1]
+        if on % 2 == p[i]:
+            light += 1
+    if light == m:
+        ans += 1
+
+print(ans)

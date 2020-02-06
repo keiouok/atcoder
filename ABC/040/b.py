@@ -18,23 +18,11 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, M = MAP()
-A = [LIST() for i in range(N)]
-C = [LIST() for i in range(M)]
-L = []
-for i in range(N):
-    index = 0
-    mi = INF
-    for j in range(M):
-        a, b = A[i][0], A[i][1]
-        c, d = C[j][0], C[j][1]
-        m = abs(a - c) + abs(b - d)
-        if mi > min(mi, m):
-            mi = min(mi, m)
-            index = j
-    L.append(index)
-for l in L:
-    print(l+1)
-
-
-
+n = INT()
+a = int(sqrt(n))
+sq = a * a
+ans = INF
+for a in range(1, n+1):
+    b = n // a
+    ans = min(ans, n - a * b + abs(a - b))
+print(ans)
