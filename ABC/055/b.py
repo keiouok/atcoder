@@ -18,24 +18,5 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, X = MAP()
-
-# a_0 = 1, p_0 = 1
-a, p = [1], [1]
-for i in range(N):
-    # 漸化式
-    a.append(a[i] * 2 + 3)
-    p.append(p[i] * 2 + 1)
-
-def f(N, X):
-    if N == 0:
-        if X <= 0:
-            return 0
-        if X > 0:
-            return 1
-    elif X <= a[N-1] + 1:
-        return f(N-1, X-1)
-    elif X > a[N-1] + 1:
-        return p[N-1] + 1 + f(N-1, X - (a[N-1] + 1 + 1))
-
-print(f(N, X))
+n = INT()
+print(factorial(n) % mod)

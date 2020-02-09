@@ -18,24 +18,32 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, X = MAP()
+N, M = MAP()
+if N == 1 and M == 1:
+    print(1)
+elif N == 1:
+    print(M - 2)
+elif M == 1:
+    print(N - 2)
+else:
+    print((N - 2) * (M - 2))
 
-# a_0 = 1, p_0 = 1
-a, p = [1], [1]
-for i in range(N):
-    # 漸化式
-    a.append(a[i] * 2 + 3)
-    p.append(p[i] * 2 + 1)
 
-def f(N, X):
-    if N == 0:
-        if X <= 0:
-            return 0
-        if X > 0:
-            return 1
-    elif X <= a[N-1] + 1:
-        return f(N-1, X-1)
-    elif X > a[N-1] + 1:
-        return p[N-1] + 1 + f(N-1, X - (a[N-1] + 1 + 1))
-
-print(f(N, X))
+#A = [[0] * W for i in range(H)]
+#C = ["o" * W for i in range(H)] 
+#C = ["#"*(W+2)] + ["#"+C[i]+"#" for i in range(H)] + ["#"*(W+2)]
+#dx = [1, 1, 0, -1, -1, -1, 0, 1]
+#dy = [0, 1, 1, 1, 0, -1, -1, -1]
+#
+#for h in range(H):
+#    for w in range(W):
+#        for i in range(8):
+#            if C[h+1+dx[i]][w+1+dy[i]] == "o":
+#                A[h][w] += 1
+#ans = 0
+#for h in range(H):
+#    for w in range(W):
+#        if A[h][w] % 2 == 0:
+#            ans += 1
+#
+#print(ans)

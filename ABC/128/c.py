@@ -18,24 +18,25 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, X = MAP()
+n, m = MAP()
 
-# a_0 = 1, p_0 = 1
-a, p = [1], [1]
-for i in range(N):
-    # 漸化式
-    a.append(a[i] * 2 + 3)
-    p.append(p[i] * 2 + 1)
+l = [LIST() for i in range(m)]
+p = LIST()
 
-def f(N, X):
-    if N == 0:
-        if X <= 0:
-            return 0
-        if X > 0:
-            return 1
-    elif X <= a[N-1] + 1:
-        return f(N-1, X-1)
-    elif X > a[N-1] + 1:
-        return p[N-1] + 1 + f(N-1, X - (a[N-1] + 1 + 1))
+# bits全探索
+bits = product([0, 1], repeat=n)
+ans = 0
+#print(list(bits))
 
-print(f(N, X))
+for b in bits:
+    light = 0
+    for i, s_l in enumerate(l):
+        on = 0
+        for s in s_l[1:]:
+            on += b[s-1]
+        if on % 2 == p[i]:
+            light += 1
+    if light == m:
+        ans += 1
+
+print(ans)
