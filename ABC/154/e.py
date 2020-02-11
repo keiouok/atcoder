@@ -18,6 +18,40 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-n = INT()
+n = input()
 k = INT()
+L = len(n)
 
+# dp[L][k][2]
+
+# k = 0 nと一致
+# k = 1 nより小さい
+dp = [[[0] * 2 for i in range(4)] for j in range(L+1)]
+dp[0][0][0] = 1
+for i in range(L):
+    for j in range(4):
+        for k in range(2):
+            nd = int(n[i])
+            # print(nd)
+            for d in range(10):
+                ni = i + 1
+                nj = j
+                nk = k
+                if d != 0:
+                    nj += 1
+                if nj > k:
+                    continue
+                if k == 0:
+                    if d > nd:
+                        continue
+                    # if d == nd:
+                    #     nk = 0
+                    if d < nd:
+                        nk = 1
+                # print(ni, nj, nk)
+                dp[ni][nj][nk] += dp[i][j][k]
+
+ans = dp[L][k][0] + dp[L][k][1]
+print(ans)
+            
+            
