@@ -26,58 +26,37 @@ def kitai(a):
     # for a in A:
     tmp = 1/a * (1/2 * a * (a+1))
     return tmp
-    
-ans = 0
-max_index = 0
-# left = 0
-# right = k
-max_ruiseki = sum(p[0:k])
-now_ruiseki = 0
-ruiseki = [max_ruiseki]
-for left in range(n-k+1):
-    if left != 0:
-        right = k + left 
-        # print(left-1, p[left-1])
-        
-        # print(right-1 ,p[right-1])
-        new_ruiseki = ruiseki[left-1] + p[right-1] - p[left-1]
-        ruiseki.append(new_ruiseki)
+acc = [0] * n
 
+# それぞれの期待値を先に求めて，それから和を求める
+for i in range(n):
+    acc[i] = (p[i] + 1) / 2
+ruiseki = [0] * n
+ruiseki[0] = acc[0]
+for i in range(n-1):
+    ruiseki[i+1] = ruiseki[i] + acc[i+1]
+ruiseki.insert(0, 0)
 # print(ruiseki)
-m = 0
-max_index = 0
-for i in range(len(ruiseki)):
-    if m != max(m, ruiseki[i]):
-        m = ruiseki[i]
-        index = i
 
-# print(index)
-
-A = p[index:index+k]
-    # now_ruiseki = max_ruiseki
-for a in A:
-    ans += kitai(a)
+ans = 0
+for i in range(n-k+1):
+    m = ruiseki[k+i] - ruiseki[i]
+    # print(m)
+    ans = max(ans, m)
 print(ans)
 
     
+    # if i == 0:
+    #     ruiseki[k]
+    # else:
+    #     ruiseki[k+i] - ruiseki[i]
+    # ans = max(ans, acc[i+k]-acc[i])
 
 
 
-# next_ruiseki = 0
-# for i in range(n-k+1):
-#     next_ruiseki = ruiseki    
-#     ruiseki = max(ruiseki)
-
-
-    # A
-    # A = p[i:i+k]
-    # if c != max(c, sum(A)):
-    #     c = sum(A)
-    #     C = deepcopy(A)
-# for a in C:
-#     ans += kitai(a)
-# print(ans)
-
-
-
-
+        {5}  &  {667} & {656} & {529} & {522}\\ \hline 
+        {10} &  {657} & {641} & {520} & {510}\\ \hline 
+        {15} &  {644} & {624} & {516} & {497}\\ \hline 
+        {20} &  {641} & {613} & {511} & {489}\\ \hline 
+        {25} &  {631} & {602} & {501} & {479}\\ \hline 
+        {30} &  {597} & {588} & {485} & {471}\\ \hline 

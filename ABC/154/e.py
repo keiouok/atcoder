@@ -21,20 +21,3 @@ mod = 10 ** 9 + 7
 n = INT()
 k = INT()
 
-below = 0
-while 1:
-    if n <= 10 ** below:
-        break
-    else:
-        below += 1
-print(below)    
-
-
-# if k == 1:
-
-# if k == 2:
-
-# if k == 3:
-
-
-
