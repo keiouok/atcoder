@@ -18,3 +18,12 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+L = [list(input()) for i in range(N)]
+Z = [[0] * N for j in range(N)]
+# print(Z)
+for h in range(N):
+    for w in range(N):
+        Z[h][w] = L[N-w-1][h]
+for h in range(N):
+    print("".join(Z[h]))

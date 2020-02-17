@@ -18,3 +18,20 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+A = LIST()
+
+comp = 0
+count = 0
+ans = 0
+for right in range(N):
+    if comp < A[right]:
+        comp = A[right]
+        count += 1
+    else:
+        comp = A[right]
+        ans += 1 / 2 * count * (count + 1)
+        count = 1
+ans += 1 / 2 * count * (count + 1)
+
+print(int(ans))

@@ -18,3 +18,33 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# def multiplyList(myList) : 
+#     # Multiply elements one by one 
+#     result = 1
+#     length = len(myList)
+#     if length == 0:
+#         return 0
+#     else:
+#         for x in myList: 
+#             result = result * x  
+#         return result  
+
+N, K = MAP()
+L = [INT() for i in range(N)]
+A = deque([])
+longest = 0
+seki = 1
+
+if 0 in L:
+    print(N)
+    exit()
+
+for right in range(N):
+    A.append(L[right])
+    seki *= L[right]
+    while seki > K and len(A) != 0:
+        seki /= A.popleft()
+    # print(seki)
+    longest = max(len(A), longest)
+print(longest)
+

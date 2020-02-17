@@ -18,3 +18,7 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, A = MAP()
+X = LIST()
+X.sort()
+print(X)

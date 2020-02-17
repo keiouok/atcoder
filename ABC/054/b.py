@@ -18,3 +18,19 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+a, b = MAP()
+A = [list(input()) for i in range(a)]
+B = [list(input()) for i in range(b)]
+
+for h in range(a-b+1):
+    for w in range(a-b+1):
+        count = 0
+        for bh in range(b):
+            for bw in range(b):
+                if A[bh+h][bw+w] == B[bh][bw]:
+                    count += 1
+        if count == b * b:
+            print("Yes")
+            exit()
+print("No")
+

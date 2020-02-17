@@ -1,6 +1,6 @@
 import sys, re, os
 from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
+from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians, floor
 from itertools import permutations, combinations, product, accumulate
 from operator import itemgetter, mul
 from copy import deepcopy
@@ -18,3 +18,14 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+l = []
+S = list(input())
+
+for s in S:
+    if s != "B":
+        l.append(s)
+    if s == "B" and len(l) != 0:
+        l.pop()
+    if s == "B" and len(l) == 0:
+        continue
+print("".join(l))

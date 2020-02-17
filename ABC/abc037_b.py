@@ -18,3 +18,14 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, Q = MAP()
+L = [LIST() for q in range(Q)]
+A = [0] * N
+for q in range(Q):
+    left = L[q][0]
+    right = L[q][1]
+    value = L[q][2]
+    for i in range(left, right+1):
+        A[i-1] = value
+
+print(*A, sep="\n")
