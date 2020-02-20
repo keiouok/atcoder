@@ -36,12 +36,15 @@ for i in range(N - 1):
     if B[i] > x:
         if A[i+1] >= B[i] - x:
             A[i+1] -= B[i] - x
-            B[i] = x
             B[i+1] -= B[i] - x
+            B[i] = x
         else:
-            B[i] -= A[i+1] + x
+            A[i] -= B[i] - x - A[i+1]
+            B[i+1] -= B[i] - x
+            B[i] = x
             A[i+1] = 0
-            A[i] -= B[i] - x
+        print("A:", A)
+        print("B:", B)
             #B[i+1] -= B[i] - x
 after = sum(A)
 print(pre-after)
