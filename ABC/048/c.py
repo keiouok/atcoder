@@ -23,30 +23,14 @@ A = LIST()
 
 # Who are you?
 
+# 最初のやつ
+# マイナスにならないように
+ans = max(0, A[0]-x)
+# a[0] - xが負なら，0，正ならそのまま
 
-#B = [0] * (N - 1)
-B = []
-for i in range(N-1):
-    B.append(A[i+1] + A[i])
+# xの方が大きいなら，残りはなくなるので0
+# xの方が小さいなら，残りがa[0] - x
+a[0] = min(a[0], 0)
 
-B.append(0)
-print(B)
-pre = sum(A)
-for i in range(N - 1):
-    if B[i] > x:
-        if A[i+1] >= B[i] - x:
-            A[i+1] -= B[i] - x
-            B[i+1] -= B[i] - x
-            B[i] = x
-        else:
-            A[i] -= B[i] - x - A[i+1]
-            B[i+1] -= B[i] - x
-            B[i] = x
-            A[i+1] = 0
-        print("A:", A)
-        print("B:", B)
-            #B[i+1] -= B[i] - x
-after = sum(A)
-print(pre-after)
-print(A)
-print(B)
+for i in range(1, N):
+    a[i]
