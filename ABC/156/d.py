@@ -20,162 +20,29 @@ mod = 10 ** 9 + 7
 
 n, a, b = MAP()
 
-# def c(n,k): 
-#   return 1 if(k<=0 or n<=k) else ( c(n-1, k-1) + c(n-1, k) ) %4
-
-# def make_comb_dp(n):
-#     dp = [[0] * (n + 1) for i in range(n + 1)]
-#     for i in range(n + 1):
-#         dp[i][0] = 1
-#         dp[i][i] = 1
-#     for i in range(2, n + 1):
-#         for j in range(1, i):
-#             dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]
-#     return dp
-
-
-
-
-
-# def c(n,k): 
-#   return 1 if(k<=0 or n<=k) else c(n-1, k-1) + c(n-1, k)
-
-# for i in range(10):
-#   print([c(i,j) for j in range(i+1)])
-
-
-MAX = 510000
-fac = [0] * MAX
-finv = [0] * MAX
-inv = [0] * MAX
-
-# // テーブルを作る前処理
-MOD = mod
-# def COMinit():
-#     fac[0] = 1
-#     fac[1] = 1
-#     finv[0] = 1
-#     finv[1] = 1
-#     inv[1] = 1
-#     # for (i = 2; i < MAX; i++){
-#     for i in range(2, MAX):
-#         fac[i] = fac[i - 1] * i % MOD
-#         inv[i] = MOD - inv[MOD%i] * (MOD / i) % MOD
-#         finv[i] = finv[i - 1] * inv[i] % MOD
-# print(fac)
-
-# // 二項係数計算
-def C(n, k):
-    if (n < k):
-        return 0
-    if (n < 0 or k < 0):
-        return 0
+def power(x, y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x % mod
+    elif y % 2 == 0:
+        return power(x, int(y/2)) ** 2 % mod
     else:
-        # print(1)
-        return fac[n] * (finv[k] * finv[n - k] % mod) % mod
+        return power(x, int((y-1)/2)) ** 2 * x % mod
+ans = power(2, n) - 1
+    
+# nCaとしたときのaのmaxがa_max
+a_max = 2 * 10 ** 5
+# a, bの最大値+2
+fact = [1] * (a_max + 2)
+# 逆元
+for i in range(1, a_max + 1):
+    fact[i] = (fact[i-1] * i) % mod
+# combination
+def C(n, a):
+    tmp = 1
+    for i in range(n, n-a, -1):
+        tmp = (tmp * i) % mod
+    return tmp * power(fact[a], mod - 2)
 
-# COMinit()
-
-def modinv(a, mod=10**9+7):
-    return pow(a, mod-2, mod)
-# def modinv(a, m):
-#     g, x, y = egcd(a, m)
-#     if g != 1:
-#         raise Exception('modular inverse does not exist')
-#     else:
-#         return x % m
-
-def combination(n, r, mod=10**9+7):
-    r = min(r, n-r)
-    res = 1
-    for i in range(r):
-        res = res * (n - i) * modinv(i+1, mod) % mod
-    return res
-
-c = combination(n, a)
-d = combination(n, b)
-ans = (2 ** n - c - d -1) % mod
-print(ans)
-
-
-
-
-
-
-# exit()
-
-# P = [0] * (n + 1)
-# P[0]=1
-# P[1]=1
-#     # // 1を-1にすれば、差分のパスカル三角形になります。
-# SIZE = n
-# # for y=2;y<SIZE;y++
-# for y in range(2, SIZE):
-#     b=0
-#     # for (r=y;r>0;r--:
-#     for r in range(y, 0, -1):
-#         P[r]=P[r-1]+b
-#         b=P[r-1]
-# print(P)
-
-
-# exit()
-# c = [[0] * (n+1) for i in range(n+1)]
-# c[0][0] = 1
-# for i in range(n):
-#     for j in range(n):
-#         tmp = c[i][j] % mod
-#         c[i+1][j] += tmp
-#         c[i+1][j+1] += tmp
-# # print()
-# # dp = make_comb_dp(n)
-# # print(dp)
-# print(c)
-# soko = (sum(c[n]))
-# # print(soko)
-# ans = soko - 1 - c[n][a] - c[n][b]
-# print(ans % mod)
-
-
-
-
-
-
-
-
-
-# # def c(n,k): 
-# #   return 1 if(k<=0 or n<=k) else c(n-1, k-1) + c(n-1, k)
-
-# # for i in range(10):
-# #   print([c(i,j) for j in range(i+1)])
-
-
-# # MAX = 510000
-# # fac = [0] * MAX
-# # finv = [0] * MAX
-# # inv = [0] * MAX
-
-# # # // テーブルを作る前処理
-# # MOD = mod
-# # def COMinit():
-# #     fac[0] = fac[1] = 1
-# #     finv[0] = finv[1] = 1
-# #     inv[1] = 1
-# #     # for (i = 2; i < MAX; i++){
-# #     for i in range(2, MAX):
-# #         fac[i] = fac[i - 1] * i % MOD;
-# #         inv[i] = MOD - inv[MOD%i] * (MOD / i) % MOD;
-# #         finv[i] = finv[i - 1] * inv[i] % MOD
-
-# # # // 二項係数計算
-# # def C(n, k):
-# #     if (n < k):
-# #         return 0
-# #     if (n < 0 or k < 0):
-# #         return 0
-# #     else:
-# #         print(1)
-# #         return fac[n] * (finv[k] * finv[n - k] % mod) % mod
-# # print(C(173205, 141421))
-
+print((ans - C(n, a) - C(n, b)) % mod)
