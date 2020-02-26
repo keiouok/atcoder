@@ -18,27 +18,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-s = list(input())
-# for i in range(len(s))
-print(s)
-for i in range(len(s)):
-    if s[i] == "R":
-        print("R")
-        count = 0
-        for j in range(i, len(s)):
-            count += 1
-        # print(count)
-            if s[i] == "L" :
-                break
-        print(count)
-    else:
-        print("L")
-        count = 0
-        for j in range(i, len(s)):
-            count += 1
-            if s[i] == "R" :
-                break
-        print(count)
-         
+S = list(input())
+c = Counter(S)
+# print(c)
+d = dict()
+L = ["A", "B", "C", "D", "E", "F"]
+for l in L:
+    d[l] = 0
+# print(d)
+for s in S:
+    d[s] += 1
+ans = []
+for l in L:
+    ans.append(d[l])
+print(*ans)
 
-
+# for key, value in c.items():
+#     print(d[key])
+#     d[key] += d[key] + 1
+# print(d)

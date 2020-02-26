@@ -6,7 +6,8 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from fractions import gcd
- 
+import heapq
+
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -18,31 +19,18 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-n, a, b = MAP()
+N, M = MAP()
+A = LIST()
+A = list(map(lambda x: x * (-1), A))
 
-def power(x, y):
-    if y == 0:
-        return 1
-    elif y == 1:
-        return x % mod
-    elif y % 2 == 0:
-        return power(x, int(y/2)) ** 2 % mod
-    else:
-        return power(x, int((y-1)/2)) ** 2 * x % mod
-ans = power(2, n) - 1
-    
-# nCaとしたときのaのmaxがa_max
-a_max = 2 * 10 ** 5
-# a, bの最大値+2
-fact = [1] * (a_max + 2)
-# 逆元
-for i in range(1, a_max + 1):
-    fact[i] = (fact[i-1] * i) % mod
-# combination
-def C(n, a):
-    tmp = 1
-    for i in range(n, n-a, -1):
-        tmp = (tmp * i) % mod
-    return tmp * power(fact[a], mod - 2)
+heapq.heapify(A)
+# print(A)
 
-print((ans - C(n, a) - C(n, b)) % mod)
+for i in range(M):
+    a = heapq.heappop(A) * (-1)
+    a = a // 2
+    heapq.heappush(A, -a)
+A = list(map(lambda x: x * (-1), A))
+print(sum(A))
+
+
