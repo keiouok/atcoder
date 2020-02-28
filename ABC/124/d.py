@@ -18,32 +18,32 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-def divisor(n): #nの約数を全て求める
-    i = 1
-    table = []
-    while i * i <= n:
-        if n%i == 0:
-            table.append(i)
-            table.append(n//i)
-        i += 1
-    table = list(set(table))
-    return table
+N, K = MAP()
+S = input()
 
-def is_prime(n):
-    for i in range(2, n + 1):
-        if i * i > n:
-            break
-        if n % i == 0:
-            return False
-    return n != 1
+indexes = [0]
+# 最初が0なら
+if S[0] == "0":
+    indexes.append(0)
 
-a, b = MAP()
-kouyaku = list(set(divisor(a)) & set(divisor(b)))
+# 前後違うところをindexに登録
+for i in range(N-1):
+    if S[i] != S[i+1]:
+        indexes.append(i+1)
+print(indexes)
+# 最後が0なら
+if S[N-1] == "0":
+    indexes.append(N)
+print(indexes)
+ans = []
+r = len(indexes)//2 - 1
+if K >= r:
+    print(N)
 
-ans = 0
-for k in kouyaku:
-    if is_prime(k):
-        ans += 1
-print(ans+1)
+
+
+
+
+
 
 

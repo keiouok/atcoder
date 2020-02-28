@@ -20,27 +20,28 @@ mod = 10 ** 9 + 7
 
 n = INT()
 W = [input() for i in range(n)]
-real = []
-image = []
-for i in range(n):
-    if not i % 2:
-        # odd
-        real.append(W[i])
-    else:
-        image.append(W[i])
-# 同じ言葉
-if len(real) != len(set(real)) and len(image) != len(set(image)):
-    print("DRAW")
-    exit()
-elif len(real) != len(set(real)):
-    print("LOSE")
-    exit()
-elif len(image) != len(set(image)):
-    print("WIN")
-    exit()
 
+# real = []
+# image = []
+# for i in range(n):
+#     if not i % 2:
+#         # odd
+#         real.append(W[i])
+#     else:
+#         image.append(W[i])
+# 同じ言葉
+# if len(real) != len(set(real)) and len(image) != len(set(image)):
+#     print("DRAW")
+#     exit()
+# elif len(real) != len(set(real)):
+#     print("LOSE")
+#     exit()
+# elif len(image) != len(set(image)):
+#     print("WIN")
+#     exit()
+memo = [W[0]]
 for i in range(n-1):
-    if W[i+1][0] != W[i][-1]:
+    if W[i+1][0] != W[i][-1] or W[i+1] in memo:
         if (i + 1) % 2 == 0:
             # real lose
             print("LOSE")
@@ -48,6 +49,7 @@ for i in range(n-1):
         else:
             print("WIN")
             exit()
+    memo.append(W[i+1])
 print("DRAW")
 
 

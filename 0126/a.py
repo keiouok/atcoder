@@ -1,3 +1,5 @@
+# No DP No LIFE
+# 配るDP, 要復習
 import sys, re, os
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
@@ -19,52 +21,24 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-# def dfs(i, sum):
-#     if sum > h:
-#     if dfs(i + 1, sum) return True
-#     if dfs(i + 1, sum + a[i]) return True
-#     # if dfs(i + 1, sum + a[i]) return True
-#     return False
-## 最小公倍数
-def gcd(a, b):
-    if a < b:
-        a, b = b, a
-    while a % b != 0:
-        a, b = b, a % b
-    return b
-
-
-## 最大公約数 
-def lcm(a, b):
-    y = a*b / gcd(a, b)
-    return int(y)
-
 def main():
-    h, n = MAP()
-    L = [LIST() for i in range(n)]
+    H, N = MAP()
+    L = [LIST() for i in range(N)]
     A = []
     B = []
-    dp1 = [0] * 1002
-    dp2 = [0] * 1002
-    for i in range(n):
+    for i in range(N):
         A.append(L[i][0])
         B.append(L[i][1])
-        
-    # a = L[0][0]
-    # damage_per = [b / a for a, b in L]
-    # print(damage_per)
-    # 初期化
-    for i in range(n):
-        dp1[i] = A[i]
-        dp2[i] = B[i]
-        
-    
-        # dp2[] = B[i]
 
-    # print(dp1)
-    print(dp2)
-    
-
+    dp = [INF] * 20010
+    dp[0] = 0
+    for i in range(10010):
+        for j in range(N):
+            dp[i+A[j]] = min(dp[i+A[j]], dp[i]+B[j])
+    ans = INF
+    for i in range(H, 20010):
+        ans = min(ans, dp[i])
+    print(ans)
 
 if __name__ == "__main__":
     main()

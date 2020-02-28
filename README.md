@@ -551,3 +551,58 @@ def surround(C): # Cはリスト
 ```
 d = sorted(d.items(), key=lambda pair: pair[1], reverse=True)
 ```
+
+## 逆元とnCkと繰り返し二乗法
+
+**ABC156D**
+```
+def power(x, y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x % mod
+    elif y % 2 == 0:
+        return power(x, int(y/2)) ** 2 % mod
+    else:
+        return power(x, int((y-1)/2)) ** 2 * x % mod
+ans = power(2, n) - 1
+    
+# nCaとしたときのaのmaxがa_max
+a_max = 2 * 10 ** 5
+# a, bの最大値+2
+fact = [1] * (a_max + 2)
+# 逆元
+for i in range(1, a_max + 1):
+    fact[i] = (fact[i-1] * i) % mod
+# combination
+def C(n, a):
+    tmp = 1
+    for i in range(n, n-a, -1):
+        tmp = (tmp * i) % mod
+    return tmp * power(fact[a], mod - 2)
+
+```
+
+## 優先度付き待ち行列(Priority Queue)
+
+**ABC141D_tickets**
+
+最小値（最大値）を O(logN)で取り出す
+
+要素を O(logN)で挿入する
+
+```
+N, M = MAP()
+A = LIST()
+A = list(map(lambda x: x * (-1), A))
+
+heapq.heapify(A)
+# print(A)
+
+for i in range(M):
+    a = heapq.heappop(A) * (-1)
+    a = a // 2
+    heapq.heappush(A, -a)
+A = list(map(lambda x: x * (-1), A))
+print(sum(A))
+```

@@ -13,37 +13,27 @@ def MAP(): return map(int, input().split())
 def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def S_LIST(): return list(map(str, input().split()))
- 
+
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-def divisor(n): #nの約数を全て求める
-    i = 1
-    table = []
-    while i * i <= n:
-        if n%i == 0:
-            table.append(i)
-            table.append(n//i)
-        i += 1
-    table = list(set(table))
-    return table
+S = list(input())
+c = Counter(S)
+# print(c)
+d = dict()
+L = ["A", "B", "C", "D", "E", "F"]
+for l in L:
+    d[l] = 0
+# print(d)
+for s in S:
+    d[s] += 1
+ans = []
+for l in L:
+    ans.append(d[l])
+print(*ans)
 
-def is_prime(n):
-    for i in range(2, n + 1):
-        if i * i > n:
-            break
-        if n % i == 0:
-            return False
-    return n != 1
-
-a, b = MAP()
-kouyaku = list(set(divisor(a)) & set(divisor(b)))
-
-ans = 0
-for k in kouyaku:
-    if is_prime(k):
-        ans += 1
-print(ans+1)
-
-
+# for key, value in c.items():
+#     print(d[key])
+#     d[key] += d[key] + 1
+# print(d)
