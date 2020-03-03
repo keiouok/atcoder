@@ -13,38 +13,25 @@ def MAP(): return map(int, input().split())
 def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def S_LIST(): return list(map(str, input().split()))
-
+ 
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-S = input()
-tmp = "R"
-index = [0]
-ans = [0] * len(S)
-for i, s in enumerate(S):
-    if tmp != s:
-        index.append(i)
-        if tmp == "R":
-            tmp = "L"
-        else:
-            tmp = "R"
-index.append(len(S))
+A = LIST()
 
-for i in range(len(index)-1):
-    left = index[i]
-    right = index[i+1]
-    tmp = S[left:right]
-    same_num = right - left
-    if tmp[0] == "R":
-        # rinsetu L
-        ans[right] += same_num // 2
-        # rinsetu R
-        ans[right-1] += ceil(same_num / 2)
+X = []
+Y = []
 
-    else:#L renzoku
-        # L
-        ans[left] += ceil(same_num / 2)
-        # R
-        ans[left-1] += same_num // 2
-print(*ans)
+for i in range(6):
+    if i % 2 == 0:
+        X.append(A[i])
+    else:
+        Y.append(A[i])
+
+a = X[1] - X[0]
+b = Y[1] - Y[0]
+c = X[2] - X[0]
+d = Y[2] - Y[0]
+
+print(0.5 * abs(a * d - b * c))

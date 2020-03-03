@@ -6,7 +6,8 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from fractions import gcd
- 
+import heapq
+
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -18,33 +19,37 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-S = input()
-tmp = "R"
-index = [0]
-ans = [0] * len(S)
-for i, s in enumerate(S):
-    if tmp != s:
-        index.append(i)
-        if tmp == "R":
-            tmp = "L"
-        else:
-            tmp = "R"
-index.append(len(S))
+N, M = MAP()
+A = LIST()
+L = [LIST() for i in range(M)]
+L = sorted(L, key=lambda x : x[1], reverse=True)
+default_sum = sum(A)
 
-for i in range(len(index)-1):
-    left = index[i]
-    right = index[i+1]
-    tmp = S[left:right]
-    same_num = right - left
-    if tmp[0] == "R":
-        # rinsetu L
-        ans[right] += same_num // 2
-        # rinsetu R
-        ans[right-1] += ceil(same_num / 2)
+heapq.heapify(A)  # リストを優先度付きキューへ
 
-    else:#L renzoku
-        # L
-        ans[left] += ceil(same_num / 2)
-        # R
-        ans[left-1] += same_num // 2
-print(*ans)
+for max_cnt, target in L:
+    cnt = 0
+    while cnt < max_cnt and len(A) != 0:
+        min_num = heapq.heappop(A) # pop min
+        default_sum += max(target - min_num, 0)
+        cnt += 1
+    
+print(default_sum)
+
+
+
+    
+
+exit()
+print(heapq.heappop(a))  # 最小値の取り出し
+
+heapq.heappush(a, -2)  # 要素の挿入
+print(a)
+for i in range(M):
+    a = heapq.heappop(A) * (-1)
+    a = a // 2
+    heapq.heappush(A, -a)
+A = list(map(lambda x: x * (-1), A))
+print(sum(A))
+
+
