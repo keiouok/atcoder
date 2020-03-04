@@ -18,14 +18,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-S = input()
+def power(x, y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x % mod
+    elif y % 2 == 0:
+        return power(x, int(y/2)) ** 2 % mod
 
-l = S.split("+")
+N = INT()
+A = LIST()
 
-ans = 0
-for kakeru in l:
-    num_list = kakeru.split("*")
-    num_list = list(map(int, num_list))
-    if 0 not in num_list:
-        ans += 1
-print(ans)
+
+if N % 2 == 0:# 長さは偶数
+    # 値は奇数
+
+else:
+    
+    print(2 , x // 2)
+
