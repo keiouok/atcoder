@@ -28,12 +28,10 @@ def power(x, y):
 
 N = INT()
 A = LIST()
+K = INT()
+P = LIST()
 
-
-if N % 2 == 0:# 長さは偶数
-    # 値は奇数
-
+if len(A+P) == len(set(A + P)):
+    print("YES")
 else:
-    
-    print(2 , x // 2)
-
+    print("NO")
