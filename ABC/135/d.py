@@ -18,13 +18,18 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-s = list(input())
-print(len(s))
-exit()
+S = input()
 
-i = 0
-ans = 0
-while(ans <= 10 ** 5):
-    ans = i * 13 + 5
-    i += 1
-    print(ans)
+dp = [[0] * len(S) for _ in range(13)]
+
+dp[0][0] = 1
+
+for i in range(len(S)):
+    # 右から順に見ていく
+    if S[i] != "?":
+        # 普通の数字
+        for j in range(0, 13):
+            dp[i+1][j] += dp[i][j]
+
+
+
