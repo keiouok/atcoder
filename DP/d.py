@@ -1,4 +1,4 @@
-import sys, re
+import sys, re, os
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
 from itertools import permutations, combinations, product, accumulate
@@ -18,15 +18,19 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
-h = LIST()
+N, W = MAP()
+L = [LIST() for _ in range(N)]
 
-dp = [INF] * N
-dp[0] = 0
-for i in range(N):
-    for j in range(1, K+1):
-        if i + j < N:
-            dp[i+j] = min(dp[i] + abs(h[i] - h[i+j]), dp[i+j])
-        # if dp[i] >= dp[i-j] + abs(h[i]-h[i-j]):
-        #     dp[i] = dp[i-j] + abs(h[i]-h[i-j])
-print(dp[-1])
+dp = [[0] * (W+1) for i in range(N+1)]
+# for w, v in L:
+for i in range(1, W+1):
+    for j in range(1, N+1):
+        w = L[j-1][0]
+        v = L[j-1][1]
+        if i - w >= 0: 
+            dp[j][i] = max(dp[j-1][i-w] + v, dp[j][i])
+        dp[j][i] = max(dp[j][i], dp[j-1][i])
+
+print(dp[N][W])
+
+

@@ -20,18 +20,27 @@ mod = 10 ** 9 + 7
 
 N = INT()
 h = LIST()
-dp = [INF] * N
+dp = [INF] * (N)
 dp[0] = 0
-dp[1] = abs(h[1] - h[0])
+dp[1] = abs(h[1]-h[0])
+for i in range(2, N):
+    dp[i] = min(dp[i-1]+abs(h[i]-h[i-1]), dp[i-2]+abs(h[i]-h[i-2]))
+# print(dp)
+print(dp[N-1])
+# N = INT()
+# h = LIST()
+# dp = [INF] * N
+# dp[0] = 0
+# dp[1] = abs(h[1] - h[0])
+# # for i in range(2, N):
+# #     a = abs(dp[i-2] + abs(h[i] - h[i-2]))
+# #     b = abs(dp[i-1] + abs(h[i] - h[i-1]))
+# #     dp[i] = min(a, b)
+# # print(dp[-1])
+
 # for i in range(2, N):
-#     a = abs(dp[i-2] + abs(h[i] - h[i-2]))
-#     b = abs(dp[i-1] + abs(h[i] - h[i-1]))
+#     a = dp[i-2] + abs(h[i] - h[i-2])
+#     b = dp[i-1] + abs(h[i] - h[i-1])
 #     dp[i] = min(a, b)
 # print(dp[-1])
-
-for i in range(2, N):
-    a = dp[i-2] + abs(h[i] - h[i-2])
-    b = dp[i-1] + abs(h[i] - h[i-1])
-    dp[i] = min(a, b)
-print(dp[-1])
 

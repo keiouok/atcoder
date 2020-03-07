@@ -21,3 +21,22 @@ mod = 10 ** 9 + 7
 N = INT()
 L = [LIST() for i in range(N)]
 
+dp = [[0] * 3 for i in range(N)]
+# dp_b = [0] * N
+# dp_c = [0] * N
+dp[0][0] = L[0][0]
+dp[0][1] = L[0][1]
+dp[0][2] = L[0][2]
+for i in range(1, N):
+    # dp_a[i+1] = max(dp_a[i]+, )
+    # for abc in range(3):
+    dp[i][0] = max(dp[i-1][1]+L[i][0], dp[i-1][2]+L[i][0])
+    dp[i][1] = max(dp[i-1][2]+L[i][1], dp[i-1][0]+L[i][1])
+    dp[i][2] = max(dp[i-1][0]+L[i][2], dp[i-1][1]+L[i][2])
+
+ans = 0
+for i in range(3):
+    if ans < dp[N-1][i]:
+        ans = dp[N-1][i]
+print(ans)
+
