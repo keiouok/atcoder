@@ -21,29 +21,3 @@ mod = 10 ** 9 + 7
 N, K = MAP()
 S = input()
 
-indexes = [0]
-# 最初が0なら
-if S[0] == "0":
-    indexes.append(0)
-
-# 前後違うところをindexに登録
-for i in range(N-1):
-    if S[i] != S[i+1]:
-        indexes.append(i+1)
-print(indexes)
-# 最後が0なら
-if S[N-1] == "0":
-    indexes.append(N)
-print(indexes)
-ans = []
-r = len(indexes)//2 - 1
-if K >= r:
-    print(N)
-
-
-
-
-
-
-
-

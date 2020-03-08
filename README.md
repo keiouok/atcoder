@@ -319,35 +319,49 @@ def binary_search(x):
 
 ## UnionFind
 ```
-class UnionFind:
+class UnionFind():
     def __init__(self, n):
-        self.par = [i for i in range(n)] #親
-        self.rank = [0 for _ in range(n)] #根の深さ
-
-    #xの属する木の根を求める
+        self.n = n
+        # parents[i]: 要素iの親要素の番号
+        # 要素iが根の場合、parents[i] = -(そのグループの要素数)
+        self.parents = [-1] * n
     def find(self, x):
-        if self.par[x] == x:
+        if self.parents[x] < 0:
             return x
         else:
-            self.par[x] = self.find(self.par[x])
-            return self.par[x]
-
-    #xとyの属する集合のマージ
-    def unite(self, x, y):
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+    def union(self, x, y):
         x = self.find(x)
         y = self.find(y)
         if x == y:
             return
-        if self.rank[x] < self.rank[y]:
-            self.par[x] = y
-        else:
-            self.par[y] = x
-            if self.rank[x] == self.rank[y]:
-                self.rank[x] += 1
-
-    #xとyが同じ集合に属するかを判定
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+    # 要素xが属するグループの要素数を返す
+    def size(self, x):
+        return -self.parents[self.find(x)]
     def same(self, x, y):
         return self.find(x) == self.find(y)
+    # 要素xが属するグループに属する要素をリストで返す
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+    # 全ての根の要素をリストで返す
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+    # グループの数を返す
+    def group_count(self):
+        return len(self.roots())
+    # 辞書{根の要素: [そのグループに含まれる要素のリスト], ...}を返す
+    def all_group_members(self):
+        return {r: self.members(r) for r in self.roots()}
+    # print()での表示用
+    # all_group_members()をprintする
+    def __str__(self):
+        return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 ```
 
 ## クラスカル法
@@ -566,7 +580,6 @@ def power(x, y):
         return power(x, int(y/2)) ** 2 % mod
     else:
         return power(x, int((y-1)/2)) ** 2 * x % mod
-ans = power(2, n) - 1
     
 # nCaとしたときのaのmaxがa_max
 a_max = 2 * 10 ** 5
@@ -582,7 +595,33 @@ def C(n, a):
         tmp = (tmp * i) % mod
     return tmp * power(fact[a], mod - 2)
 
+
 ```
+## tonnnura version
+```
+upper = 10**6  # 必要そうな階乗の限界を入れる
+factorial = [1]
+for i in range(1, upper):
+    factorial.append(factorial[i-1] * i % mod)
+def power(x, y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x % mod
+    elif y % 2 == 0:
+        return power(x, int(y/2)) ** 2 % mod
+    else:
+        return power(x, int((y-1)/2)) ** 2 * x % mod
+ 
+def C(n, r):
+    return (((factorial[n] * x_inv[r]) % mod) * x_inv[n-r]) % mod
+ 
+x_inv = [0] * upper
+x_inv[-1] = power(factorial[-1], mod-2)
+for i in range(upper-2, -1, -1):
+    x_inv[i] = x_inv[i+1] * (i+1) % mod
+``` 
+
 
 ## 優先度付き待ち行列(Priority Queue)
 
@@ -607,4 +646,17 @@ for i in range(M):
 A = list(map(lambda x: x * (-1), A))
 print(sum(A))
 ```
-aa
+
+## accumulate
+```
+    # 累積イテレータを生成
+    p = list(accumulate(num_list, mul))
+    p = list(accumulate(num_list, add))
+
+```
+
+## 組み合わせの総数
+```
+def combinations_count(n, r):
+    return factorial(n) // (factorial(n - r) * factorial(r))
+```

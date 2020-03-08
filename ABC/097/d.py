@@ -13,7 +13,7 @@ def MAP(): return map(int, input().split())
 def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def S_LIST(): return list(map(str, input().split()))
- 
+
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
@@ -62,14 +62,40 @@ class UnionFind():
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 
-
-
 N, M = MAP()
+P = LIST()
 L = [LIST() for i in range(M)]
 
-tree = UnionFind(N)
-for x, y, z in L:
-    tree.union(x-1, y-1)
+dic = defaultdict(list)
+tree = UnionFind(N+1)
+for a, b in L:
+    tree.union(a, b)
 
-print(tree.group_count())
-    
+# 時間かかってTLEになる
+# a = tree.all_group_members()
+
+ans = 0
+for i in range(1, N+1):
+    if tree.find(i) == tree.find(P[i-1]):
+        ans += 1
+print(ans)
+# print(a)
+# for key, l in a.items():
+#     for y in l:
+#         dic[key].append(P[y-1])
+
+# print(a)
+# youso_set = set()
+# graph_set = set()
+# ans = 0
+# for key, l in a.items():
+#     if key == 0:
+#         continue
+#     youso_set = set(dic[key])
+#     graph_set = set(l)
+#     intersec = len(youso_set & graph_set)
+#     ans += intersec
+# print(ans)
+
+
+

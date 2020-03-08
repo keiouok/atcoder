@@ -21,41 +21,18 @@ mod = 10 ** 9 + 7
 N = INT()
 A = LIST()
 # ball を入れたら1
-ball = [0] * (N + 1)
-
-for i in range(len(A), 0, -1):
-    if i > N // 2:
-        ball[i] = A[i-1]
-    else:
-        tmp = A[i-1]
-        for x in range(i, N+1, i):
-            if x == i:
-                continue
-            tmp = tmp ^ ball[x]
-        ball[i] = tmp
-
+ball = [0] * (N+1)
+for i in range(N, 0, -1):
+    tmp = A[i-1]
+    for j in range(i, N+1, i):
+        if j == i:
+            continue
+        tmp ^= ball[j]
+    # 辻褄合わせるためにはこれが必要
+    ball[i] = tmp
 print(sum(ball))
-
-exit()
-for i in range(N):
-    # last
-    small_real = i+1
-    big = N-1-i
-    amari = A[big]
-    big_real = N - i
-    big_real
-    wa_now = 0 
-    while big_real <= N:
-        wa_now += A[big_real-1]
-        print(big_real)
-        big_real = big_real + big_real
-        
-    # print(wa_now)
-    if wa_now % big_real != A[big]:
-        ball[big] += 1
-print(ball)
-
-
-
-
-
+for i, b in enumerate(ball):
+    if b == 1:
+        print(i, end=" ")
+    
+    

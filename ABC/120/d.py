@@ -62,14 +62,25 @@ class UnionFind():
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 
-
+def C(n, r):
+    return factorial(n) // (factorial(n - r) * factorial(r))
 
 N, M = MAP()
 L = [LIST() for i in range(M)]
 
 tree = UnionFind(N)
-for x, y, z in L:
-    tree.union(x-1, y-1)
 
-print(tree.group_count())
+# print(C(N, 2))
+ans = [0] * (M+1)
+ans[M] = C(N,2)
+for i in range(M-1, -1, -1):
+    #     if len(l) >= 2:
+    #         ans[i] -= C(len(l), 2)
+    a, b = L[i]
+    ans[i] = ans[i+1]
+    if not tree.same(a-1, b-1):
+        ans[i] -= tree.size(a-1) * tree.size(b-1)
+    tree.union(a-1, b-1)
+for a in ans[1:]:
+    print(a)
     

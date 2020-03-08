@@ -62,14 +62,37 @@ class UnionFind():
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 
+N = INT()
+A = LIST()
+ans = 0
+p = sum(A)
+if p % N != 0:
+    print(-1)
+    exit()
+target = p // N
+ans, tmp, cnt = 0, 0, 0
+
+for i in range(N-1):
+    cnt += 1
+    if tmp + A[i] != target * cnt:
+        ans += 1 # make bridge
+        tmp += A[i]
+    else:
+        cnt = 0
+        tmp = 0
+
+print(ans)
+
+# for i in range(N-1): # 橋探索
+#     cnt += 1
+#     # 繋げても目的poplationにならないなら
+#     if tmp + A[i] != target * cnt:
+#         ans += 1 # hashi count
+#         tmp += A[i]
+#     # つなげて目的populationになるなら，そこまでで島は終わり
+#     else:
+#         tmp = 0
+#         cnt = 0
 
 
-N, M = MAP()
-L = [LIST() for i in range(M)]
 
-tree = UnionFind(N)
-for x, y, z in L:
-    tree.union(x-1, y-1)
-
-print(tree.group_count())
-    

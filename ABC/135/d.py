@@ -20,16 +20,19 @@ mod = 10 ** 9 + 7
 
 S = input()
 
-dp = [[0] * len(S) for _ in range(13)]
+dp = [[0] * 13 for i in range(len(S)+1)]
 
 dp[0][0] = 1
 
 for i in range(len(S)):
-    # 右から順に見ていく
-    if S[i] != "?":
-        # 普通の数字
-        for j in range(0, 13):
-            dp[i+1][j] += dp[i][j]
-
-
-
+    if S[i] == "?":
+        c = -1
+    else:
+        c = int(S[i])
+    for j in range(0, 10):
+        if c != -1 and c != j:
+            continue
+        for k in range(0, 13):
+            # dp[i+1][(10*k + j) % 13] = (dp[i+1][(10*k+j) % 13] + dp[i][k]) % mod
+            dp[i+1][(10*k+j) % 13] = (dp[i+1][(10*k+j) % 13] + dp[i][k]) % mod
+print(dp[len(S)][5])

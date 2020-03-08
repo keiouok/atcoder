@@ -68,8 +68,24 @@ N, M = MAP()
 L = [LIST() for i in range(M)]
 
 tree = UnionFind(N)
-for x, y, z in L:
-    tree.union(x-1, y-1)
 
-print(tree.group_count())
-    
+graph = defaultdict(set)
+for a, b in L:
+    graph[a-1].add(b-1)
+    graph[b-1].add(a-1)
+    # tree.union(a-1, b-1)
+    # tree.union(b-1, a-1)
+
+
+
+for i in range(N):
+    ff = set()
+    if not graph[i]:
+        print(0)
+        continue
+    for friend in graph[i]:
+        # 友達の友達
+        ff |= graph[friend]
+    ff -= graph[i]
+    print(len(ff)-1) # 自分自身を消す
+

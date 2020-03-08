@@ -18,27 +18,33 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, A, B = MAP()
-L = [S_LIST() for i in range(N)]
+s = input()
+s = deque(s)
+q = INT()
 
-place = 0
-v = 0
-for s, d in L:
-    d = int(d)
-    if d < A:
-        v = A
-    elif A <= d < B:
-        v = d
+r_count = 0
+L = [S_LIST() for i in range(q)]
+for i in range(q):
+    if L[i][0] == "1":
+        r_count ^= 1
+        # s.reverse()
     else:
-        v = B
-    if s == "West":
-        place -= v
-    elif s == "East":
-        place += v
-if place < 0:
-    print("West", abs(place))
-elif place == 0:
-    print(0)
-else:
-    print("East", place)
-        
+        query, sent = int(L[i][1]), str(L[i][2])
+        if r_count == 0:
+            if query == 1:
+                s.appendleft(sent)
+            else:
+                s.append(sent)
+        else:
+            if query == 2:
+                s.appendleft(sent)
+            else:
+                s.append(sent)
+
+if r_count != 0:
+    s.reverse()
+print("".join(list(s)))
+    
+    
+
+

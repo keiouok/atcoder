@@ -18,27 +18,31 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, A, B = MAP()
-L = [S_LIST() for i in range(N)]
+N = INT()
+L = [LIST() for i in range(N-1)]
 
-place = 0
-v = 0
-for s, d in L:
-    d = int(d)
-    if d < A:
-        v = A
-    elif A <= d < B:
-        v = d
+graph = defaultdict(list)
+for u, v, w in L:
+    graph[u-1].append((v-1, w))
+    graph[v-1].append((u-1, w))
+
+color = [0] * N
+color[0] = 1
+
+def dfs(node):
+    for i, w in graph[node]:
+        if color[i] == 0: # not visited
+            if w % 2 == 0: # guusuu        
+                color[i] = color[node]
+            else:
+                color[i] = color[node] * (-1)
+            dfs(i)
+
+dfs(0)
+for c in color:
+    if c == 1:
+        print(0)
     else:
-        v = B
-    if s == "West":
-        place -= v
-    elif s == "East":
-        place += v
-if place < 0:
-    print("West", abs(place))
-elif place == 0:
-    print(0)
-else:
-    print("East", place)
+        print(1)
+
         

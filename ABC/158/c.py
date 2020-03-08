@@ -18,27 +18,30 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, A, B = MAP()
-L = [S_LIST() for i in range(N)]
+a, b = MAP()
 
-place = 0
-v = 0
-for s, d in L:
-    d = int(d)
-    if d < A:
-        v = A
-    elif A <= d < B:
-        v = d
-    else:
-        v = B
-    if s == "West":
-        place -= v
-    elif s == "East":
-        place += v
-if place < 0:
-    print("West", abs(place))
-elif place == 0:
-    print(0)
+for i in range(1, 2000):
+    tax8 = i * 8 // 100
+    tax10 = i * 10 // 100
+    if tax8 == a and tax10 == b:
+        print(i)
+        exit()
+    
+print(-1)
+exit()
+x1 = a / 0.08
+y1 = b /0.1
+x2 = (a+1) / 0.08
+y2 = (b+1) /0.1
+
+
+# exit()
+if ceil(y1) <= ceil(x1) < y2:
+    ans = ceil(x1)
+    print(ans)
+elif ceil(x1) <= ceil(y1) < x2:
+    ans = ceil(y1)
+    print(ans)
 else:
-    print("East", place)
-        
+    print(-1)
+
