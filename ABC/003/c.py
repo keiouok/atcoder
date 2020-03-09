@@ -22,8 +22,8 @@ N, K = MAP()
 R = LIST()
 
 ans = 0
-R.sort()
-print(R[:K])
-for r in R[:K]:
+R.sort(reverse=True)
+# print(R[:K][::-1])
+for r in R[:K][::-1]:
     ans = (r + ans) / 2
 print(ans)
