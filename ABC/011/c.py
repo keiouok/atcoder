@@ -18,14 +18,3 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
-S = list(input())
-diff_idx = []
-for i in range(N):
-    if i != 0:
-        if S[i] != S[i-1]:
-            diff_idx.append(i)
-
-print(diff_idx)
-
-

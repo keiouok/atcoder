@@ -18,14 +18,25 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
-S = list(input())
-diff_idx = []
-for i in range(N):
-    if i != 0:
-        if S[i] != S[i-1]:
-            diff_idx.append(i)
+N = INT()
+NG = [INT() for i in range(3)]
 
-print(diff_idx)
+dp = [INF] * (N+1)
+# 0手
+dp[N] = 0
+# k に辿り着くまでに最大何手必要か
+for i in range(N, -1, -1):
+    if i in NG:
+        continue
+    for j in range(1, 4):
+        if i - j >= 0:
+            dp[i-j] = min(dp[i] + 1, dp[i-j])
+        # 必ず1, 2, 3で引くのでこれはなし
+        # dp[i-j] = min(dp[i], dp[i-j])
+# print(dp[0])
+if dp[0] <= 100:
+    print("YES")
+else:
+    print("NO")
 
 
