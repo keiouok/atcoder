@@ -6,36 +6,28 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from fractions import gcd
-from bisect import bisect, bisect_left, bisect_right
-
+ 
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
 def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def S_LIST(): return list(map(str, input().split()))
-
+ 
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-l = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-ans = []
-def dfs(s, mx):
-    if len(s) == N:
-        ans.append(s)
-        return
-    for i in range(mx+1):
-        # 新しい文字を登場させる
-        if i == mx:
-            # print("a:", s+l[i])
-            dfs(s+l[i], mx+1)
-        else:
-            # print("b:", s+l[i])
-            dfs(s+l[i], mx)
+N, A, B, C = MAP()
+l = [INT() for i in range(N)]
 
+def dfs(cur, a, b, c):
+    if cur == N:
+        return abs(a-A) + abs(b-B) + abs(c-C) - 30 if min(a, b, c) > 0 else INF
+    ret0 = dfs(cur + 1, a, b, c)
+    ret1 = dfs(cur + 1, a + l[cur], b, c) + 10
+    ret2 = dfs(cur + 1, a, b + l[cur], c) + 10
+    ret3 = dfs(cur + 1, a, b, c + l[cur]) + 10
+    return min(ret0, ret1, ret2, ret3)
 
-dfs("", 0)
-print(*ans, sep="\n")
-    
+print(dfs(0, 0, 0, 0))

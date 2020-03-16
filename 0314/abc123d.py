@@ -19,23 +19,24 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-l = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-ans = []
-def dfs(s, mx):
-    if len(s) == N:
-        ans.append(s)
-        return
-    for i in range(mx+1):
-        # 新しい文字を登場させる
-        if i == mx:
-            # print("a:", s+l[i])
-            dfs(s+l[i], mx+1)
-        else:
-            # print("b:", s+l[i])
-            dfs(s+l[i], mx)
+X, Y, Z, K = MAP()
+A = LIST()
+B = LIST()
+C = LIST()
+A.sort(reverse=True)
+B.sort(reverse=True)
+C.sort(reverse=True)
 
+V = []
+for i in range(X):
+    for j in range(Y):
+        for k in range(Z):
+            if (i+1) * (j+1) * (k+1) <= K:
+                V.append(A[i]+B[j]+C[k])
+            else:
+                break
 
-dfs("", 0)
-print(*ans, sep="\n")
-    
+V.sort(reverse=True)
+
+for i in range(K):
+    print(V[i])
