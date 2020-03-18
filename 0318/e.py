@@ -18,3 +18,52 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 20:16
+N = INT()
+A = LIST()
+
+flag = True
+if N % 2 == 1:
+    for i in range((N+1) // 2):
+        if i == 0:
+            if A.count(i) != 1:
+                flag = False
+        elif A.count(i * 2) != 2:
+            flag = False
+    if flag == False:
+        print(0)
+        exit()
+    else:
+        print(2 ** ((N-1) // 2))
+else:
+    for i in range(N // 2):
+        if A.count(2 * i + 1) != 2:
+            flag = False
+    if flag == False:
+        print(0)
+    else:
+        print(2 ** (N//2))
+
+
+
+
+
+
+        
+
+
+    # c = Counter(A)
+    # c = sorted(c.items(), key=lambda x: x[0], reverse = False)
+    # if c[0][1] != 1:
+        # print(0)
+    # for i in c[1:]:
+        # if c[0]
+    
+
+    
+
+    
+
+    
+
+ 
