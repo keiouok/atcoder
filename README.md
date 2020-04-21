@@ -1,6 +1,9 @@
 # atcoder
 
-早く土から出たい．
+芽が出て戻る(2020/04/21)
+
+`make_dir.sh`
+フォルダ自動作成．ABCの下などに置き，そこで実行．
 
 ## 参考文献
 
@@ -14,43 +17,28 @@ https://qiita.com/knakajima3027/items/b871631b8997a6d67223
 
 https://qiita.com/okkn/items/3aef4458ed2269a59d63
 
-## cheet_sheet
+## CheetSheet(updated on 2020/04/21)
 
 ```
-import sys, re, os
+import sys, re
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import permutations, combinations, product, accumulate
+from itertools import accumulate, permutations, combinations, product
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
+from bisect import bisect, bisect_left
 from fractions import gcd
- 
+from heapq import heappush, heappop
+from functools import reduce
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
-def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
-def S_LIST(): return list(map(str, input().split()))
- 
-
+def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
-
-## 最小公倍数
-def gcd(a, b):
-    if a < b:
-        a, b = b, a
-    while a % b != 0:
-        a, b = b, a % b
-    return b
-
-
-## 最大公約数 
-def lcm(a, b):
-    y = a*b / gcd(a, b)
-    return int(y)
 ```
 
 ## list内をstring出力
@@ -62,6 +50,7 @@ def lcm(a, b):
 a = [[".", "#", "."], ["#", "#", "#"]]
 print(*["".join(x) for x in a], sep="\n")
 ```
+出力結果
 ```
 .#.
 ```
@@ -92,16 +81,16 @@ def divisor(n): #nの約数を全て求める
 ```
 #nを素因数分解したリストを返す
 def prime_decomposition(n):
-  i = 2
-  table = []
-  while i * i <= n:
-    while n % i == 0:
-      n /= i
-      table.append(i)
-    i += 1
-  if n > 1:
-    table.append(n)
-  return table
+    i = 2
+    table = []
+    while i * i <= n:
+        while n % i == 0:
+            n /= i
+            table.append(i)
+        i += 1
+    if n > 1:
+        table.append(n)
+    return table
 ```
 
 ## 素数判定
@@ -150,22 +139,17 @@ import itertools
 L = [0, 1] #生成する数字
 num = 3 #生成するビット数
 bit_list = list(itertools.product([0, 1], repeat=num))
-
-'''実行結果
-[(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
-'''
 ```
 
 ## 階乗
 ```
 import itertools
-
 seq = ('a', 'b', 'c', 'd', 'e')
-
-#階乗
 ptr = list(itertools.permutations(seq)) #組み合わせ列挙 5!
-
-'''実行結果
+ptr_num = len(list(itertools.permutations(seq))) #組み合わせ数 
+```
+実行結果
+```
 [('a', 'b', 'c', 'd', 'e'),
  ('a', 'b', 'c', 'e', 'd'),
  ('a', 'b', 'd', 'c', 'e'),
@@ -173,24 +157,18 @@ ptr = list(itertools.permutations(seq)) #組み合わせ列挙 5!
            中略
  ('e', 'd', 'c', 'a', 'b'),
  ('e', 'd', 'c', 'b', 'a')]
- '''
-
-ptr_num = len(list(itertools.permutations(seq))) #組み合わせ数 
-
-'''実行結果
-    120
-'''
+120
 ```
 
 ## 順列
 ```
-#nPa(順列)
 import itertools
-
 seq = ('a', 'b', 'c', 'd', 'e')
 ptr = list(itertools.permutations(seq, 3)) #順列列挙 5P3
-
-'''実行結果
+ptr_num = len(list(itertools.permutations(seq, 3))) #順列数
+```
+実行結果
+```
 [('a', 'b', 'c'),
  ('a', 'b', 'd'),
  ('a', 'b', 'e'),
@@ -199,23 +177,16 @@ ptr = list(itertools.permutations(seq, 3)) #順列列挙 5P3
  ('e', 'd', 'a'),
  ('e', 'd', 'b'),
  ('e', 'd', 'c')]
-'''
-
-ptr_num = len(list(itertools.permutations(seq, 3))) #順列数
-
-'''実行結果
-    60
-'''
+60
 ```
-## 組み合わせ
+## 組み合わせ nCa
 ```
-#nCa (組み合わせ)
 import itertools
-
 seq = ('a', 'b', 'c', 'd', 'e')
 ptr = list(itertools.combinations(seq,3)) # 組み合わせ列挙 5C3
-
-'''実行結果
+```
+実行結果
+```
 [('a', 'b', 'c'),
  ('a', 'b', 'd'),
  ('a', 'b', 'e'),
@@ -226,7 +197,6 @@ ptr = list(itertools.combinations(seq,3)) # 組み合わせ列挙 5C3
  ('b', 'c', 'e'),
  ('b', 'd', 'e'),
  ('c', 'd', 'e')]
- '''
 ```
 
 ## 数え上げ
@@ -237,9 +207,10 @@ d = Counter() #インスタンスを生成
 d.update(arr)
 print(d[1]) #d[数えたい値]
 
-'''実行結果
+```
+実行結果
+```
 6
-'''
 ```
 
 ## 多次元配列のソート
@@ -247,14 +218,14 @@ print(d[1]) #d[数えたい値]
 A = [[1, 2], [3, 1], [2, 5]]
 B = sorted(A, key=lambda x: x[0]) # 0番目の要素でソート
 C = sorted(A, key=lambda x: x[1]) # 1番目の要素でソート
-
-'''実行結果
+```
+実行結果
+```
 B = [[1, 2], [2, 5], [3, 1]]
 C = [[3, 1], [1, 2], [2, 5]]
-'''
 ```
 
-## にぶたん
+## 二分探索
 ```
 import bisect
 #ソートされたリストAにソートを崩さずに値xを挿入するとき、xの入るべきインデックスを返す。
@@ -267,37 +238,8 @@ bisect.bisect_left(A,x)
 bisect.bisect_right(A,x)
 ```
 
-
-import sys, re, os
-from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import permutations, combinations, product, accumulate
-from operator import itemgetter, mul
-from copy import deepcopy
-from string import ascii_lowercase, ascii_uppercase, digits
-from fractions import gcd
- 
-def input(): return sys.stdin.readline().strip()
-def INT(): return int(input())
-def MAP(): return map(int, input().split())
-def S_MAP(): return map(str, input().split())
-def LIST(): return list(map(int, input().split()))
-def S_LIST(): return list(map(str, input().split()))
- 
-sys.setrecursionlimit(10 ** 9)
-INF = float('inf')
-mod = 10 ** 9 + 7
-
-# にぶたん
-# A * N + B * d(N)
-# d(N)は桁数
-# 10 7 100
-# 10 * N + 7 * d(N)
-
-def ret(a, b, N):
-    return a * N + b * len(str(N))
-# bigger number, more expensive
-ABC146C，整数屋の問題から自作．rightは[left, right)が半開区間となり，leftは含むがrightを含まないようにするために，right = x + 1にする必要がある．
+## 整数屋の二分探索
+ABC146C．整数屋の問題から自作．rightは[left, right)が半開区間となり，leftは含むがrightを含まないようにするために，right = x + 1にする必要がある．
 ```
 # x = 持っているお金の金額
 # 返すのは，お店で変える最大の整数N
@@ -317,7 +259,7 @@ def binary_search(x):
     return min(left, 10 ** 9)
 ```
 
-## UnionFind
+## UnionFind(強い方を新調)
 ```
 class UnionFind():
     def __init__(self, n):
@@ -444,8 +386,6 @@ class kruskal():
                 res_V.append(e[1])
 
         return list(set(res_V))
-        
-        
 ```
 
 ## ワ―シャルフロイド法
@@ -502,7 +442,7 @@ arr = [[0 for i in range(10)] for j in range(10)]
 ```
 
 
-## 素数列挙 O(NloglogN) (by tonnnura)
+## 素数列挙 O(NloglogN) (by tonnn*)
 ```
 def primes_for(n):
   is_prime = [True] * (n + 1)
@@ -513,7 +453,7 @@ def primes_for(n):
           is_prime[j] = False
   return [i for i in range(n + 1) if is_prime[i]]
 ```
-## ABC035D ダイクストラ法
+## ダイクストラ法
 ```
 def dijkstra(E, start):
     N_d = len(E)
@@ -535,34 +475,22 @@ E は 連結リスト(多分) startは始点
 
 E[a].append(b, c)
 
-意味するのは，「a番目のノードがbと繋がっており，コストはc」 これが連結リスト．すべてのノードからダイクストラを求める必要はない．0スタートを逆順にすればよいだけ．大事．
+ABC035D．意味するのは，「a番目のノードがbと繋がっており，コストはc」 これが連結リスト．すべてのノードからダイクストラを求める必要はない．0スタートを逆順にすればよいだけ．大事．
 
 ## クリップボードにコピー
 ```
 cat test.txt | xsel --clipboard --input
 ```
 
-## 表とかリストを見やすくしましょう
+## 表とかリストを見やすくできる
 ```
 print(*visited_copy, sep="\n")
 ```
-# まわりを#で囲む
+## 壁を作る関数選手権で一位を取った関数
 ```
-def surround(C): # Cはリスト 
-    H = len(C)
-    W = len(C[0])
-    D = []
-    first = ["#"] * (W + 2)
-    D.append(first)
-    for h in range(H):
-        # for w in range(W):
-        C[h].append("#")
-        C[h].insert(0, "#")
-        D.append(C[h])
-    D.append(first)
-    return D
+C = ["#"*(W+2)] + ["#"+C[i]+"#" for i in range(H)] + ["#"*(W+2)]
 ```
-## Counterソート 
+## Counterなどの辞書のソート 
 ```
 d = sorted(d.items(), key=lambda pair: pair[1], reverse=True)
 ```
@@ -594,10 +522,8 @@ def C(n, a):
     for i in range(n, n-a, -1):
         tmp = (tmp * i) % mod
     return tmp * power(fact[a], mod - 2)
-
-
 ```
-## tonnnura version
+## tonnn* version(上はバグることがあるのでこっち使おう)
 ```
 upper = 10**6  # 必要そうな階乗の限界を入れる
 factorial = [1]
@@ -623,7 +549,7 @@ for i in range(upper-2, -1, -1):
 ``` 
 
 
-## 優先度付き待ち行列(Priority Queue)
+## Priority Queue
 
 **ABC141D_tickets**
 
@@ -649,10 +575,9 @@ print(sum(A))
 
 ## accumulate
 ```
-    # 累積イテレータを生成
-    p = list(accumulate(num_list, mul))
-    p = list(accumulate(num_list, add))
-
+# 累積イテレータを生成
+p = list(accumulate(num_list, mul))
+p = list(accumulate(num_list, add))
 ```
 
 ## 組み合わせの総数
