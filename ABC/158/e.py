@@ -18,16 +18,3 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, P = MAP()
-S = input()
-
-# n = len(S)
-# res = []
-# for i in range(n-1, -1, -1):
-#     for j in range(26):
-#         res[i][j] = res[i+1][j]
-#     return res
-dp[0][0] = 0
-for i in range(N):
-    for j in range(0, 10):
-        dp = [i][j]
