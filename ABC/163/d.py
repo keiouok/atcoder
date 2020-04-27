@@ -18,18 +18,17 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
+S = LIST()
 
+l = [0] * 2019
+
+tmp = 0
+z = 1
+for s in S:
+    tmp += s * z
+    z = z * 10 % 2019
+    l[tmp%2019] += 1
 ans = 0
-for k in range(K, N + 2):
-    # k個足してできる最大の整数
-    # 大きい順にk個選べばよい
-    # N + (N - 1) + ... + (N - k + 1)
-    # = (0+1+...+N) - (0+1+...+(N-k)) = B
-    B = N * (N + 1) // 2 - (N - k) * (N - k + 1) // 2
-    # 最小の整数は小さい順にk個選べばよい
-    # 0 + 1 + ... + (k-1)
-    A = (k - 1) * k // 2
-    # k個足してできる整数の数
-    ans += (B - A + 1)
-print(ans % mod)
+for v in l:
+    ans += v * (v - 1) // 2
+print(ans+l[0])

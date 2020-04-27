@@ -1,26 +1,18 @@
-import sys, re, os
-from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import permutations, combinations, product, accumulate
-from operator import itemgetter, mul
-from copy import deepcopy
-from string import ascii_lowercase, ascii_uppercase, digits
-from heapq import heapify, heappop, heappush
+S = list(input())
+N = len(S)
 
-def input(): return sys.stdin.readline().strip()
-def INT(): return int(input())
-def MAP(): return map(int, input().split())
-def S_MAP(): return map(str, input().split())
-def LIST(): return list(map(int, input().split()))
-def S_LIST(): return list(map(str, input().split()))
+l = [0] * 2019
+index = 0
+temp = 0
+for i in range(N-1, -1, -1):
+    temp += int(S[i]) * 10 * index
+    l[temp%2019] += 1
+    index += 1
  
-sys.setrecursionlimit(10 ** 9)
-INF = float('inf')
-mod = 10 ** 9 + 7
-
-N = INT()
-A = LIST()
-
-
-
-
+ans = l[0]
+ 
+for i in range(1, 2019):
+    v = l[i]
+    ans += v * (v-1) // 2
+ 
+print(ans)

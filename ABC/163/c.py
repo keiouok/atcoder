@@ -19,16 +19,7 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 N = INT()
-A = LIST()
+S = [input() for i in range(N)]
 
-dic = defaultdict(int)
-for i in range(2, N+1):
-    own_snum = i
-    joshi = A[i-2]
-    # dic[joshi].append(i)
-    dic[joshi] += 1
-for i in range(1, N+1):
-    print(dic[i])
-
-
-    
+a =set(S)
+print(len(a))

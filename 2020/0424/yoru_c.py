@@ -6,7 +6,7 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from heapq import heapify, heappop, heappush
-
+ 
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -18,16 +18,20 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A, B, C, D = MAP()
+N = INT()
+A = LIST()
+C = Counter(A)
+# print(C)
+# combinations()
+al = 0
+for ball, num in C.items():
+    al += num * (num - 1) // 2
+# print(al)
+for a in A:
+    ball = a
+    num = C[a]
+    ans = al - C[a] * (C[a] - 1) // 2 + (C[a] - 1) * (C[a] - 2) // 2
+    print(ans)
 
-while 1:
-    C -= B
-    # print(C)
-    if C <= 0:
-        print("Yes")
-        exit()
-    A -= D
-    # print(A)
-    if A <= 0:
-        print("No")
-        exit()
+# for a in A:
+#     c[a]

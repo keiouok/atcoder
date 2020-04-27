@@ -6,7 +6,7 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from heapq import heapify, heappop, heappush
-
+ 
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -18,16 +18,20 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A, B, C, D = MAP()
+D = INT()
+A = LIST()
+B = LIST()
 
-while 1:
-    C -= B
-    # print(C)
-    if C <= 0:
-        print("Yes")
-        exit()
-    A -= D
-    # print(A)
-    if A <= 0:
-        print("No")
-        exit()
+ans = INF
+have = 0
+for i in range(D):
+    have += A[i]
+    if B[i] <= have:
+        ans = min(B[i], ans)
+if ans == INF:
+    print(-1)
+else:
+    print(ans)
+
+
+

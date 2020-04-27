@@ -18,5 +18,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-R = INT()
-print(R * 2 * pi)
+s, w = MAP()
+
+
+if s <= w:
+    print("unsafe")
+else:
+    print("safe")

@@ -5,8 +5,8 @@ from itertools import permutations, combinations, product, accumulate
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
-from heapq import heapify, heappop, heappush
-
+from fractions import gcd
+ 
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
@@ -18,16 +18,19 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A, B, C, D = MAP()
+N, M = MAP()
+L = [LIST() for i in range(M)]
+L = sorted(L, key=lambda x: x[1])
+tmp = L[0][1]
 
-while 1:
-    C -= B
-    # print(C)
-    if C <= 0:
-        print("Yes")
-        exit()
-    A -= D
-    # print(A)
-    if A <= 0:
-        print("No")
-        exit()
+ans = 1
+
+for a, b in L:
+    if a < tmp <= b:
+        continue
+    else:
+        ans += 1
+        tmp = b
+print(ans)
+
+
