@@ -5,7 +5,7 @@ from itertools import permutations, combinations, product, accumulate
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
-from fractions import gcd
+from heapq import heapify, heappop, heappush
  
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
@@ -18,17 +18,13 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, P = MAP()
-S = list(input())
-S = [int(s) for s in S]
-l = [0] * P
-z = 1
-S = S[::-1]
-tmp = 0
+s = list(input())
+t = list(input())
 
-if P == 2 or P == 5:
-
+s.sort()
+t.sort(reverse=True)
+if s < t:
+    print("Yes")
 else:
-    for i, s in enumerate(S):
-        tmp += s
+    print("No")
 
