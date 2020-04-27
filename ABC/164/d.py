@@ -17,3 +17,21 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+S = list(input())
+
+S = [int(s) for s in S]
+dp = [0] * 2019
+
+S = S[::-1]
+z = 0
+for s, i in enumerate(S):
+    z = z + s 
+    print(z)
+    dp[z%2019] += 1
+ans = 0
+# print(dp)
+for v in dp:
+    ans += v * (v - 1) // 2
+print(ans)
+

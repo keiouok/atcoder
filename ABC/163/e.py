@@ -1,18 +1,17 @@
 S = list(input())
 N = len(S)
-
+S = [int(s) for s in S]
+S = S[::-1]
 l = [0] * 2019
 index = 0
-temp = 0
-for i in range(N-1, -1, -1):
-    temp += int(S[i]) * 10 * index
-    l[temp%2019] += 1
-    index += 1
- 
+tmp = 0
+z = 1
+for i, s in enumerate(S):
+    tmp += s * pow(10, i, 2019)
+    l[tmp%2019] += 1
+
 ans = l[0]
- 
-for i in range(1, 2019):
-    v = l[i]
+
+for v in l:
     ans += v * (v-1) // 2
- 
 print(ans)
