@@ -18,9 +18,13 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-A = LIST()
-dp = [[0] * (N + 1) for i in range(2)]
+x = INT()
 
-dp[0][0] = 0
-dp[0][1] = -INF
+if x % 11 == 0:
+    print(2 * x // 11)
+else:
+    if 6 < x % 11:
+        tmp = 2 + 2 * (x // 11)
+    else:
+        tmp = 1 + 2 * (x // 11)
+print(tmp)

@@ -5,7 +5,7 @@ from itertools import permutations, combinations, product, accumulate
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
-from heapq import heapify, heappop, heappush
+from fractions import gcd
  
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
@@ -18,9 +18,7 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-A = LIST()
-dp = [[0] * (N + 1) for i in range(2)]
-
-dp[0][0] = 0
-dp[0][1] = -INF
+S = input()
+c = Counter(S)
+print(c["1"])
+# print(c)
