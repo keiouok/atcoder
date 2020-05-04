@@ -6,7 +6,6 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from bisect import bisect, bisect_left
-from fractions import gcd
 from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
@@ -17,3 +16,12 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, K = MAP()
+A = [True] * N
+for i in range(K):
+    d = INT()
+    B = LIST()
+    for b in B:
+        A[b-1] = False
+print(sum(A))
