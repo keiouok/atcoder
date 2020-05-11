@@ -20,22 +20,13 @@ mod = 10 ** 9 + 7
 N = INT()
 A = LIST()
 
-dic = defaultdict(list)
+# A = [x-i for i, x in enumerate(A)]
+# cnt_A = Counter(A)
+
+ans = 0
+left = defaultdict(int)
 for i, a in enumerate(A):
-    dic[a].append(i)
-cnt = 0
-for i in range(N):
-    a = A[i]
-    for k, l in dic.items():
-        # k + a がimaのiとl[*]の差と等しくなればいい
-        tmp = i - (k + a)
-        if tmp > 0:
-            print(bisect_right(l, tmp))
-            if bisect_right(l, tmp) != 0:
-                cnt += 1
-        # if bisect_left(l, tmp)
-            # print("k", k, a)
-            # print("l", l)
-            # cnt += 1
-print(cnt)
-        
+    ans += left[i-a]
+    left[i+a] += 1
+# for i, a in enumerate(A):
+#     ans += cnt_A[-A[i]-2*i]
