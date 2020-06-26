@@ -16,3 +16,23 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+A = [input() for i in range(N)]
+
+# alpha_matrix = [[0] * 26 for i in range(26)]
+alpha_matrix = []
+ans_list = ["no" for i in range(N)]
+for i in range(N):
+    c = Counter(A[i])
+    d = Counter(A[N-i-1])
+    for k, v in c.items():
+        if d[k] > 0:
+            ans_list[i] = k
+            ans_list[N-i-1] = k
+if "no" in ans_list:
+    print(-1)
+else:
+    print("".join(ans_list))
+
+

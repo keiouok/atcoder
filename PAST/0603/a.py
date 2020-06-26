@@ -16,3 +16,6 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 mod = 10 ** 9 + 7
 
+N, A, B = MAP()
+ans = min(A * N, B)
+print(ans)

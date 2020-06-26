@@ -16,3 +16,49 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+S = [input() for i in range(5)]
+# print(len(S[0]))
+
+example = [
+".###..#..###.###.#.#.###.###.###.###.###.",
+".#.#.##....#...#.#.#.#...#.....#.#.#.#.#.",
+".#.#..#..###.###.###.###.###...#.###.###.",
+".#.#..#..#.....#...#...#.#.#...#.#.#...#.",
+".###.###.###.###...#.###.###...#.###.###."]
+
+Num = []
+for i in range(1, 4*(10-1)+1+1, 4):
+    # iは1スタート
+    # print(i, 4 + i)
+    real_left = i
+    real_right = i + 4
+    l = i
+    r = i + 4 - 1
+    num = []
+    for line in example:
+        # print(line)
+        num.append(line[l:r])
+    Num.append(num)
+# print(*Num, sep = "\n")
+    
+ans = ""
+for i in range(1, 4*(N-1)+1+1, 4):
+    # iは1スタート
+    # print(i, 4 + i)
+    real_left = i
+    real_right = i + 4
+    l = i
+    r = i + 4 - 1
+    this_num = []
+    for line in S:
+        # print(line)
+        this_num.append(line[l:r])
+    for i, Nu in enumerate(Num):
+        # print(i, Nu)
+        # print("this", this_num)
+        if this_num == Nu:
+            ans += str(i)
+print(ans)
+

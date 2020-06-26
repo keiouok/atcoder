@@ -16,3 +16,30 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, M, Q = MAP()
+L = [LIST() for i in range(M)]
+
+colors = LIST()
+S = [LIST() for i in range(Q)]
+
+graph = defaultdict(list)
+
+for u, v in L:
+    graph[u-1].append(v-1)
+    graph[v-1].append(u-1)
+
+for s in S:
+    if s[0] == 1:
+        x = s[1] - 1
+        color = colors[x]
+        print(color)
+        # print(graph[x])
+        for node in graph[x]:
+            colors[node] = color
+    elif s[0] == 2:
+        x = s[1] - 1
+        y = s[2]
+        color = deepcopy(colors[x])
+        colors[x] = y
+        print(color)

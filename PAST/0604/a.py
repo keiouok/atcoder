@@ -17,3 +17,20 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+
+s = input()
+t = input()
+s_def = deepcopy(s)
+t_def = deepcopy(t)
+s_l = s.lower()
+t_l = t.lower()
+# print(s_l, t_l)
+# print(s_def, t_def)
+if s_l == t_l:
+    if s_def == t_def:
+        print("same")
+    else:
+        print("case-insensitive")
+else:
+    print("different")    
+

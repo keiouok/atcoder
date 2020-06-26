@@ -16,3 +16,15 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, T = MAP()
+L = [LIST() for i in range(N)]
+
+ans = INF
+for c, t in L:
+    if t <= T:
+        ans = min(ans, c)
+if ans == INF:
+    print("TLE")
+else:
+    print(ans)

@@ -17,3 +17,68 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+A =[chr(i) for i in range(97, 97+26)]
+# print(A)
+L = []
+while 1:
+    a = N % 26
+    N = N // 26
+    # N -= 1
+    if a == 0:
+        N -= 1
+    
+    # print(a)
+    # if a == 0:
+    #     L.append(26)
+    # else:
+    L.append(a)
+    if N <= 0:
+        break
+ans = ""
+L.reverse()
+for a in L:
+    ans += A[a-1]
+print(ans)
+
+
+
+
+
+exit()
+def Base_10_to_n(X, n):
+    X_dumy = X
+    out = ''
+    while X_dumy>0:
+        out = str(X_dumy%n)+","+out
+        X_dumy = X_dumy//n
+    return out
+# while N:
+# while N:
+#     a = N % 26
+#     N = N // 26
+#     print(a)
+ans = Base_10_to_n(N, 26)
+l = ans.split(",")
+print(l)
+ans = ""
+r = l[:-2]
+if Counter(r)["1"]==len(r) and l[-2] == "0":
+    # print(r)
+    print("z" * (len(r)))
+    exit()
+#  == len(l[:-1]) and l[-1] == "0":
+    # print(l)
+    # exit()
+for a in l:
+    if len(a) != 0:
+        a = int(a)
+        # if a == 0:
+        #     ans += "z"
+        # else:
+
+        tmp = A[a-1]
+        ans += tmp
+
+print(ans)

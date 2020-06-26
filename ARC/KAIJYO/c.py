@@ -1,11 +1,13 @@
 import sys, re
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
+import math
 from itertools import accumulate, permutations, combinations, product
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from bisect import bisect, bisect_left
+from fractions import gcd
 from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
@@ -17,18 +19,6 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, Q = MAP()
-L = [LIST() for i in range(Q)]
-
-A = [i for i in range(N+1)]
-
-for t, x, y in L:
-    if t == 1:
-        tmp = deepcopy(A[x])
-        A[x] = deepcopy(A[x+1])
-        A[x+1] = tmp
-    else:
-        A[x:y+1] = sorted(A[x:y+1])
-    # print(A)
-print(*A[1:], sep=" ")
+N, K = MAP()
+A = LIST()
 

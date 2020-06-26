@@ -6,6 +6,7 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from bisect import bisect, bisect_left
+from fractions import gcd
 from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
@@ -17,18 +18,17 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, Q = MAP()
-L = [LIST() for i in range(Q)]
+A, V = MAP()
+B, W = MAP()
+T = INT()
 
-A = [i for i in range(N+1)]
-
-for t, x, y in L:
-    if t == 1:
-        tmp = deepcopy(A[x])
-        A[x] = deepcopy(A[x+1])
-        A[x+1] = tmp
+if A < B:
+    if A + V * T < B + W * T:
+        print("NO")
     else:
-        A[x:y+1] = sorted(A[x:y+1])
-    # print(A)
-print(*A[1:], sep=" ")
-
+        print("YES")
+else:
+    if B - W * T < A - V * T:
+        print("NO")
+    else:
+        print("YES")

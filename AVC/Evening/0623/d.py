@@ -18,27 +18,14 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-L = [LIST() for i in range(N)]
-
-import itertools
-l = [i for i in range(N)] #生成する数字
-bit = list(permutations(l))
-# print(bit)
-cnt = 0
+N, A, B = MAP()
+X = LIST()
 ans = 0
-s = 0
-for t in bit:
-    # s = 0
-    # print(t)
-    for i in range(len(t)-1):
-        # print(i)
-        a, b = L[t[i]][0], L[t[i]][1]
-        c, d = L[t[i+1]][0], L[t[i+1]][1]
-        s += sqrt((a - c) ** 2 + (b - d) ** 2)
-    # print(s)
-    # ans += s
-    # s = 0
-
-ans = s / len(bit)
+for i in range(N-1):
+    gap = X[i+1] - X[i]
+    hA = gap * A
+    if hA < B:
+        ans += hA
+    else:
+        ans += B
 print(ans)
