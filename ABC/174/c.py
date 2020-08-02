@@ -17,3 +17,24 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+K = INT()
+
+tmp = 7
+ans = 1
+p = 1
+mo = tmp % K
+checked = [0] *  (10 ** 6 + 1)
+checked[mo] = 1
+
+while mo != 0:
+    mo = mo + 7 * pow(10, p, K)
+    mo %= K
+    p += 1
+    if checked[mo]:
+        # 0には一生辿り着かない
+        print(-1)
+        break
+    checked[mo] = 1
+else:
+    print(p)

@@ -1,20 +1,37 @@
-import sys, re
+import sys, re, os
 from collections import deque, defaultdict, Counter
 from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import accumulate, permutations, combinations, product
+from itertools import permutations, combinations, product, accumulate
 from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
-from bisect import bisect, bisect_left
 from fractions import gcd
-from heapq import heappush, heappop
-from functools import reduce
+from bisect import bisect, bisect_left, bisect_right
+
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
+def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
-def ZIP(n): return zip(*(MAP() for _ in range(n)))
+def S_LIST(): return list(map(str, input().split()))
+
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+a, b, c = MAP()
+k = INT()
+flag = False
+while a >= b and k > 0:
+    b *= 2
+    k -= 1
+# print(a, b, k)
+while b >= c and k > 0:
+    c *= 2
+    k -= 1
+# print(a, b, c)
+if a < b < c:
+    print("Yes")
+else:
+    print("No")
 

@@ -17,3 +17,18 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+C = input()
+c = Counter(C)
+R = c["R"] * "R" + c["W"] * "W"
+# print(R)
+r = c["R"]
+w = c["W"]
+# print(C[:r], C[r:])
+
+a = Counter(C[:r])["W"] # make R
+b = Counter(C[r:])["R"]
+
+ans = min(max(a, b), r, w)
+print(ans)

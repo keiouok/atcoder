@@ -11,9 +11,18 @@ from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
-def MAP(): return map(int, input().split())
+def S_MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+# s,t = S_MAP()
+s = input()
+t = input()
+cnt = 0
+for i in range(len(s)):
+    if s[i] != t[i]:
+        cnt += 1
+print(cnt)
