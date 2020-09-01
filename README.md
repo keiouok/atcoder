@@ -585,3 +585,8 @@ p = list(accumulate(num_list, add))
 def combinations_count(n, r):
     return factorial(n) // (factorial(n - r) * factorial(r))
 ```
+
+## 文字列の2次元配列を文字列として出力する
+```
+print(*["".join(a) for a in A], sep="\n")
+```

@@ -17,3 +17,16 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+S = input()
+T = input()
+mi = 10 ** 9
+for i in range(len(S) - len(T)+1):
+    a = S[i:i+len(T)]
+    # print(a)
+    tmp = 0
+    for j in range(len(T)):
+        if T[j] != a[j]:
+            tmp += 1
+    mi = min(mi, tmp)
+print(mi)    

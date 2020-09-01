@@ -17,3 +17,30 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+
+S = input()
+cnt = 0
+before = 1
+
+if S == "RRR":
+    print(3)
+elif S in ["SSS"]:
+    print(0)
+elif S in ["SSR", "RSS", "SRS", "RSR"]:
+    print(1)
+elif S in ["SRR", "RRS"]:
+    print(2)
+
+
+# for s in S:
+#     if s == 'R':
+#         # cnt += 1
+#         if before == 1:
+#             cnt += 1
+#         before = 1
+#     else:
+#         cnt += 0
+#         before = 0
+# print(cnt)
+        

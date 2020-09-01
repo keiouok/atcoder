@@ -17,3 +17,41 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+
+from itertools import combinations_with_replacement
+N = INT()
+L = LIST()
+
+C = Counter(L)
+S = sorted(set(L))
+# print(S)
+# print(C)
+
+A = list(combinations(S, 3))
+# print(a)
+cnt = 0
+for a, b, c in A:
+    if a != b != c:
+        if a + b > c:
+            # print(a, b, c)
+            # print(c[a])
+            # print(c[a])
+            cnt += C[a] * C[b] * C[c]
+print(cnt)
+
+# cnt = 0
+# p = 0
+# for idx in range(len(S)-1):
+#     p = 0
+#     while p + idx != len(S) - 1:
+#         s_num = c[S[idx]]
+#         min_wa = S[idx] + S[idx + p]
+#         print(min_wa)
+#         right = S[idx+2:]
+#         print(right)
+#         a = bisect_left(right, min_wa)
+#         print("idx", a)
+#         cnt += a * s_num
+#         p += 1
+# print(cnt)
