@@ -17,3 +17,17 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+# L = [LIST() for i in range(N)]
+
+zmax, zmin, wmax, wmin = -10 ** 9, 10 ** 9, -10 ** 9, 10 ** 9
+# for i in range(N):
+for i in range(N):
+    x, y = MAP()
+    zmax = max(zmax, x + y)
+    zmin = min(zmin, x + y)
+    wmax = max(wmax, x - y)
+    wmin = min(wmin, x - y)
+print(max(zmax - zmin, wmax - wmin))
+
