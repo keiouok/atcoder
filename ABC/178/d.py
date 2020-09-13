@@ -29,3 +29,4 @@ for i in range(1, N + 1):
         x %= mod
     dp[i] = x
 print(dp[N])
+
