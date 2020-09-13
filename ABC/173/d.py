@@ -17,3 +17,45 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+A = LIST()
+dic = defaultdict(list)
+A.sort(reverse=False)
+first = A.popleft()
+q = deque([])
+cnt = 0
+for i, a in enumerate(A):
+    if i % 0 == 0:
+        q.append(a)
+    else:
+        q.appendleft(a)
+
+# q.append(first)
+# q.appendleft(first)
+
+# # while 1:
+# ans = 0
+# for i, y in enumerate(i, q):
+#     if len(q) == 1:
+#         ans += 1
+#     else:
+#         if i == 0:
+#             # left
+
+
+# for a in A:
+#     if len(stack) == 0:
+#         stack.append(a)
+#         stack.append(a)
+#     else:
+#         if len(stack) == 1:
+#             stack.append(a)
+#         else:
+
+    # dic[a].append()
+    # dic[b].append()
+    
+
+
+
