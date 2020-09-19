@@ -17,3 +17,25 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+
+# a = N % A
+# b = N % B
+def divisor(n): #nの約数を全て求める
+    i = 1
+    table = []
+    while i * i <= n:
+        if n%i == 0:
+            table.append(i)
+            table.append(n//i)
+        i += 1
+    table = list(set(table))
+    return table
+ans = 0
+
+A = N - 1
+ans = 0
+for i in range(1, N):
+    ans += A // i
+print(ans)

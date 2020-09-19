@@ -17,3 +17,14 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+L = [LIST() for i in range(N)]
+
+for i in range(N - 3 + 1):
+    # print(L[i][0], L[i][1], L[i+1][0], L[i+1][1], L[i+2][0], L[i+2][1])
+    
+    if L[i][0] == L[i][1] and L[i+1][0] == L[i+1][1] and L[i+2][0] == L[i+2][1]:
+        print("Yes")
+        exit()
+print("No")

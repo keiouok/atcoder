@@ -17,3 +17,28 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, X, M = MAP()
+ans = 0
+flag = False
+L = []
+dic = dict()
+for i in range(1, N+1):
+    if X % M not in L:
+        L.append(X % M)
+    else:
+        flag = True
+        tmp = X % M
+        l = len(L)
+        break
+    X = (X % M) ** 2
+if flag == True:
+    index = L.index(tmp)
+    nR = L[:index]
+    R = L[index:]
+    amari = (N - len(nR)) % len(R)
+    ans = sum(nR) + (N - len(nR)) // len(R) * sum(R) + sum(R[:amari])
+    print(ans)    
+else:
+    ans = sum(L)
+    print(ans)
