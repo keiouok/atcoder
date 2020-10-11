@@ -57,6 +57,10 @@ print(*["".join(x) for x in a], sep="\n")
 
 ## 3 数以上の最小公倍数、最大公約数
 ```
+def many_gcd(numbers):
+    return reduce(gcd, numbers)
+
+
 def many_lcm(l):
     tmp = l[0]
     for i in range(1, len(l)):

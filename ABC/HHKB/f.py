@@ -11,47 +11,9 @@ from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
-def MAP(): return map(str, input().split())
+def MAP(): return map(int, input().split())
 def LIST(): return list(map(int, input().split()))
 def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
-
-# L = [i for i in range(1, N+1)]
-
-ans = []
-while 1:
-    N = INT()
-    if N == 0:
-        break
-    total = 0
-    right = 1
-    left = 1
-    cnt = 0
-    flag = False
-    while left < N:
-        if total < N:
-            # if flag == True:
-            #     break
-            # else:
-            total += right
-            right += 1
-            flag = False
-        elif total > N:
-            total -= left
-            left += 1
-
-        elif total == N:
-            cnt += 1
-            total += right
-            right += 1
-            flag = True
-    ans.append(cnt)
-print(*ans, sep="\n")
-            
-            
-
-
-
-

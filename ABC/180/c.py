@@ -17,3 +17,16 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+L = []
+while 1:
+    N = INT()
+    if N == 0:
+        break
+    A = LIST()
+    t = sum(A) / N
+    A.sort()
+    a = bisect(A, t)
+    L.append(a)
+    # print(a)
+print(*L, sep="\n")

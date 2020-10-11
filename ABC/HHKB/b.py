@@ -11,47 +11,27 @@ from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
-def MAP(): return map(str, input().split())
+def MAP(): return map(int, input().split())
 def LIST(): return list(map(int, input().split()))
 def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-# L = [i for i in range(1, N+1)]
+H, W = MAP()
 
-ans = []
-while 1:
-    N = INT()
-    if N == 0:
-        break
-    total = 0
-    right = 1
-    left = 1
-    cnt = 0
-    flag = False
-    while left < N:
-        if total < N:
-            # if flag == True:
-            #     break
-            # else:
-            total += right
-            right += 1
-            flag = False
-        elif total > N:
-            total -= left
-            left += 1
+S = [input() for i in range(H)]
 
-        elif total == N:
-            cnt += 1
-            total += right
-            right += 1
-            flag = True
-    ans.append(cnt)
-print(*ans, sep="\n")
-            
-            
-
-
-
+dh = [0, 1, 0, -1]
+dw = [1, 0, -1, 0]
+cnt = 0
+for h in range(H):
+    for w in range(W):
+        for i in range(4):
+            nh = h + dh[i]
+            nw = w + dw[i]
+            if 0 <= nh < H and 0 <= nw < W:
+                if S[h][w] == "." and S[h][w] == S[nh][nw]:
+                    cnt += 1
+print(cnt//2)        
 
