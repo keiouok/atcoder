@@ -18,29 +18,19 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-XY = [LIST() for i in range(N)]
-L = [i for i in range(N)]
-A = list(combinations(L, 3))
+A, B, C = MAP()
+# for a in range(A):
+a = (A + 1) * A // 2
+b = (B + 1) * B // 2
+c = (C + 1) * C // 2
+# c = 1 // 2 * (C + 1) * C
+# ans =  (a + c) * (a + b) * (b + c)
+ans = a * b * c
+# print(ans)
 
-def r(x1, x2, y1, y2):
-    r = (y2 - y1) / (x2 - x1)
-    return r    
+# d = b * c
+# ans = 0
+# for a in range(1, A+1):
+#     ans += a * (b * c)
 
-for c in A:
-    x1, y1 = XY[c[0]]
-    x2, y2 = XY[c[1]]
-    x3, y3 = XY[c[2]]
-    if x1 == x2 == x3:
-        print("Yes")
-        exit()
-    elif y1 == y2 == y3:
-        print("Yes")
-        exit()
-    elif x1 == x2 or x2 == x3 or x3 == x1:
-        continue
-    else:
-        if r(x1, x2, y1, y2) == r(x1, x3, y1, y3):
-            print("Yes")
-            exit()
-print("No")
+print(ans % 998244353)
