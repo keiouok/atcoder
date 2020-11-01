@@ -301,11 +301,11 @@ class UnionFind():
     # グループの数を返す
     def group_count(self):
         return len(self.roots())
-    # 辞書{根の要素: [そのグループに含まれる要素のリスト], ...}を返す
+    # 辞書{根の要素: [****そのグループに含まれる要素のリスト****], ...}を返す
     def all_group_members(self):
         return {r: self.members(r) for r in self.roots()}
     # print()での表示用
-    # all_group_members()をprintする
+    # all_group_members()****をprintする****
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 ```
@@ -593,4 +593,9 @@ def combinations_count(n, r):
 ## 文字列の2次元配列を文字列として出力する
 ```
 print(*["".join(a) for a in A], sep="\n")
+```
+
+## リスト内包してmaxを一行で出す
+```
+print(max(*[dp[N][j] for j in range(3)]))
 ```
