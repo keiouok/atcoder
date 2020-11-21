@@ -18,27 +18,29 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
-T = [LIST() for i in range(N)]
+N = INT()
+S = input()
+L = []
+tmp = len(S)
+q = deque([(S, 0)])
 
-A = [i+1 for i in range(N-1)]
-L = list(permutations(A, N-1))
-# print(L)
-ans = 0
-for l in L:
-    cnt = 0
-    dist = 0
-    for y in l:
-        if cnt == 0:
-            # first
-            dist += T[0][y]
-            ny = y
-            cnt += 1
-        else:
-            dist += T[ny][y]
-            ny = y
-    dist += T[y][0]
-    # print(dist)
-    if dist == K:
-        ans += 1
-print(ans)
+# for i in range(N - 2):
+i = 0
+cnt = 0
+while len(S) > i:
+
+    a = S[i:i+3]
+    # print("a:", a)
+    # if 0 <= i and i + 3 < len(S)
+    if a == "fox":
+        # j = i
+        cnt += 1
+        S = S[:i] + S[i+3:]
+        # print(S)
+        # print(i)
+        i -= 2
+    else:
+        i += 1
+# print(S)
+print(len(S))
+

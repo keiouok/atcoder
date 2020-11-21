@@ -18,27 +18,33 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, K = MAP()
-T = [LIST() for i in range(N)]
+N, M = MAP()
 
-A = [i+1 for i in range(N-1)]
-L = list(permutations(A, N-1))
-# print(L)
-ans = 0
-for l in L:
-    cnt = 0
-    dist = 0
-    for y in l:
-        if cnt == 0:
-            # first
-            dist += T[0][y]
-            ny = y
-            cnt += 1
+L = [LIST() for i in range(M)]
+
+graph = defaultdict(list)
+
+for u, v, c in L:
+    graph[u-1].append([v-1, c-1])
+    graph[v-1].append([u-1, c-1])
+
+q = deque([0])
+
+ans = [-1] * N
+ans[0] = 0
+while q:
+    cv = q.popleft()
+    for nv, c in graph[cv]:
+        if ans[nv] != -1:
+            # 行ったことある
+            continue
+        if ans[cv] == c:
+            ans[nv] = (c + 1) % N
         else:
-            dist += T[ny][y]
-            ny = y
-    dist += T[y][0]
-    # print(dist)
-    if dist == K:
-        ans += 1
-print(ans)
+            ans[nv] = c
+        q.append(nv)
+
+for i in range(N):
+    print(ans[i] + 1)
+
+# k**9 

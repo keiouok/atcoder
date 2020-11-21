@@ -17,3 +17,25 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, W = MAP()
+L = [LIST() for i in range(N)]
+
+T = []
+for s, t, p in L:
+    T.append(t)
+ma_time = max(T)
+M = [0] * (ma_time + 1)
+
+imos = [0] * (ma_time + 2)
+
+for s, t, p in L:
+    imos[s] += p
+    imos[t] -= p
+csum = list(accumulate(imos))
+# print(imos)
+# print(csum)
+if max(csum) > W:
+    print("No")
+else:
+    print("Yes")
