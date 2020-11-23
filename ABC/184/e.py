@@ -17,3 +17,21 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+a, b = MAP()
+c, d = MAP()
+
+dx = a - c
+dy = b - d
+ans = 0
+
+if 
+
+if dx % 2 == dy % 2:
+    ans1 = 2 # 二回斜めで飛べる
+
+
+
+
+
+print(x, y)
