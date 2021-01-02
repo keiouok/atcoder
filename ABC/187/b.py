@@ -17,3 +17,22 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+L = [LIST() for i in range(N)]
+
+a = list(combinations(L, 2))
+# print(a)
+
+cnt = 0
+for l in a:
+    c, d = l
+    x1, y1 = c
+    x2, y2 = d
+    if x2 - x1 != 0:
+        b = (y2 - y1) / (x2 - x1)
+        if -1 <= b <= 1:
+            cnt += 1
+print(cnt)
+
+#     print(c, d)

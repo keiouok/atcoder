@@ -17,3 +17,32 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+L = [LIST() for i in range(N)]
+A = []
+
+d_aoki = 0
+d_taka = 0
+
+C = []
+
+index = 0
+for a, b in L:
+    d_aoki += a
+    d_taka += b
+    C.append([a, b, 2 * a + b, index])
+    index += 1
+
+C = sorted(C, key=lambda x: x[2], reverse=True)
+
+taka, aoki = 0, d_aoki
+X = taka - aoki
+cnt = 0
+
+for a, t, delta, i in C:
+    cnt += 1
+    X += delta
+    if X > 0:
+        print(cnt)
+        break

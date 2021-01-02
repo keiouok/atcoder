@@ -17,3 +17,26 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+S = [input() for i in range(N)]
+
+dict_exist = defaultdict(int)
+dict = defaultdict(int)
+
+for s in S:
+    if s[0] == "!":
+        moji = s[1:]
+        if dict[moji] == 1:
+            print(moji)
+            exit()
+        else:
+            dict_exist[moji] = 1
+    else:
+        moji = s
+        if dict_exist[moji] == 1:
+            print(moji)
+            exit()
+        else:
+            dict[moji] = 1
+print("satisfiable")
