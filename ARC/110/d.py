@@ -18,7 +18,18 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-X, K, D = MAP()
-if X >= 0:
-    if X - D * K <= 0:
-        
+n = INT()
+
+left = 0
+right = 10 ** 18 + 1
+
+while right - left > 1:
+    mid = (right + left) // 2
+    wa = mid * (mid + 1) // 2
+    if wa <= n + 1:
+        left = mid
+    else:
+        right = mid
+
+print(n + 1 - left)
+

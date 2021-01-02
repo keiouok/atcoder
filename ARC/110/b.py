@@ -18,7 +18,32 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-X, K, D = MAP()
-if X >= 0:
-    if X - D * K <= 0:
-        
+N = INT()
+T = input()
+
+a = N // 3
+b = N % 3
+cnt = 0
+
+if T == "1":
+    print(2 * 10 ** 10)
+    exit()
+elif T == "11":
+    print(10 ** 10)
+    exit()
+for s in ["110", "101", "011"]:
+    a = N // 3
+    b = N % 3
+    if T == a * s + s[:b]:
+        cnt += 1
+
+if cnt == 0:
+    print(0)
+    exit()
+    # Tは必ず0を含む
+else:
+    K = Counter(T)["0"]
+    if T[-1] == "0":
+        print(10 ** 10 - K + 1)
+    elif T[-1] == "1":
+        print(10 ** 10 - K)

@@ -18,7 +18,34 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-X, K, D = MAP()
-if X >= 0:
-    if X - D * K <= 0:
-        
+N = INT()
+P = LIST()
+flag = True
+now = 0
+x = 1
+ans = []
+for i in range(N):
+    if P[i] == i + 1:
+        print(-1)
+        exit()
+    if P[i] == x:
+        P[now:i+1] = [x] + P[now:i]
+        for j in range(now, i):
+            if P[j] != j + 1:
+                print(-1)
+                exit()
+            else:
+                for k in range(i, now, -1):
+                    ans.append(k)
+                now = i
+                x = i + 1
+                # 後半の部分でnow(index)と数が同じなら無理
+                # now == N - 1ならOK，最後だから同じでOK
+                if P[now] == x and now != N - 1:
+                    print(-1)
+                    exit()
+print(*ans, sep="\n")
+
+
+
+

@@ -18,7 +18,16 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-X, K, D = MAP()
-if X >= 0:
-    if X - D * K <= 0:
-        
+def many_gcd(numbers):
+    return reduce(gcd, numbers)
+
+def many_lcm(l):
+    tmp = l[0]
+    for i in range(1, len(l)):
+        tmp = tmp * l[i]//gcd(tmp, l[i])
+    return tmp
+
+N = INT()
+L = [i for i in range(2,N+1)]
+m = many_lcm(L)
+print(m + 1)
