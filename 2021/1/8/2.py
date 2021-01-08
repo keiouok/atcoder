@@ -18,24 +18,8 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 N = INT()
-
-X = [input() for i in range(N)]
-
 cnt = 0
-tmp = 0
-for w in range(9):
-    for j in range(N):
-        if X[j][w] == "x":
-            cnt += 1
-            tmp = 0
-        elif X[j][w] == "o":
-            if tmp == 0:
-                cnt += 1
-            # elif tmp == 1:
-            #     continue
-                tmp = 1
-        elif X[j][w] == ".":
-            tmp = 0
-    tmp = 0
-
+for y in str(N):
+    if y == "2":
+        cnt += 1
 print(cnt)
