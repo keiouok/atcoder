@@ -17,5 +17,6 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A, B = MAP()
-print(A + B)
+N, K = MAP()
+L = [LIST() for i in range(K)]
+

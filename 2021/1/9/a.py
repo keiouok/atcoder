@@ -17,4 +17,56 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, M = MAP()
+tmp = 10
 
+exit()
+dic = defaultdict(int)
+i = 1
+
+10 ** N
+
+
+exit()
+
+while 1:
+    a = (tmp) ** i // M 
+    b = a % M
+    if dic[b] == 0:
+        dic[b] = i
+    else:
+        break
+    i += 1
+
+last_i = i
+last_amari = b
+
+memo = defaultdict(int)
+for amari, i in dic.items():
+    memo[i] = amari
+print(memo)
+print(sorted(memo))
+print(i)
+
+loop_first_i = dic[last_amari]
+
+
+print(last_i, last_amari)
+# print(dic)
+# l = len(dic)
+l = len(memo)
+
+n = (N % l) + 1
+print(n)
+
+
+
+exit()
+
+
+
+
+
+c = (N % l) + 1
+print(c)
+print(dic[c])
