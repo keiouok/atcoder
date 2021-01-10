@@ -1,50 +1,83 @@
-import sys, re
-from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import accumulate, permutations, combinations, product
-from operator import itemgetter, mul
-from copy import deepcopy
-from string import ascii_lowercase, ascii_uppercase, digits
-from bisect import bisect, bisect_left
-from heapq import heappush, heappop
-from functools import reduce
-def input(): return sys.stdin.readline().strip()
-def INT(): return int(input())
-def MAP(): return map(int, input().split())
-def LIST(): return list(map(int, input().split()))
-def ZIP(n): return zip(*(MAP() for _ in range(n)))
-sys.setrecursionlimit(10 ** 9)
-INF = float('inf')
+import sys
+from bisect import bisect_left
+
+sys.setrecursionlimit(10 ** 7)
+input = sys.stdin.readline
+f_inf = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-L = [LIST() for i in range(N)]
 
-dic = defaultdict(list)
-i = 0
+class UnionFind:
+    def __init__(self, n):
+        self.n = n
+        self.parents = [-1] * n
 
-for a, b in L:
-    dic[a].append(i)
-    dic[b].append(i)
-    i += 1
-
-print(dic)
-
-
-exit()
-dp = [[set()] * 2 for i in range(N + 1)]
-
-for i in range(1, N + 1):
-    for j in range(2):
-        s1 = L[i-1][0]
-        s2 = L[i-1][1]
-        l1 = dp[i-1][0] | set([s1])
-        l2 = dp[i-1][1] | set([s2])
-        if len(l1) >= len(l2):
-            dp[i][j] = l1
+    def find(self, x):
+        """xの親を返す"""
+        if self.parents[x] < 0:
+            return x
         else:
-            dp[i][j] = l2
-        # print(l1, l2)
-# print(len(dp[N][0])
-ans = max(len(dp[N][0]), len(dp[N][1]))
-print(ans)
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+
+    def union(self, x, y):
+        """yをxの根に繋ぐ（マージテク有）"""
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+
+    def same(self, x, y):
+        """xとyが同じ連結成分か判別する"""
+        return self.find(x) == self.find(y)
+
+    def size(self, x):
+        """xの連結成分の大きさを返す"""
+        return -self.parents[self.find(x)]
+
+    def kruskal(self, edge):
+        """
+        :param edge: edge = [(コスト, 頂点1, 頂点2),...]の形で重み付き隣接リストを渡して下さい
+        :return: 最小全域木のコストの和
+        """
+        edge.sort()
+        cost_sum = 0
+        for cost, node1, node2 in edge:
+            if not self.same(node1, node2):
+                cost_sum += cost
+                self.union(node1, node2)
+        return cost_sum
+
+
+def resolve():
+    n = int(input())
+    AB = [list(map(int, input().split())) for _ in range(n)]
+
+    nums = sorted(set(a for a, _ in AB) | set(b for _, b in AB))
+    m = len(nums)
+    uf = UnionFind(m)
+    for a, b in AB:
+        i = bisect_left(nums, a)
+        j = bisect_left(nums, b)
+        uf.union(i, j)
+
+    edge = [0] * m
+    for a, b in AB:
+        i = bisect_left(nums, a)
+        root = uf.find(i)
+        edge[root] += 1
+
+    res = 0
+    for i in range(m):
+        root = uf.find(i)
+        if root == i:
+            res += min(edge[i], uf.size(root))
+    print(res)
+
+
+if __name__ == '__main__':
+    resolve()

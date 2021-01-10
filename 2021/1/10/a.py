@@ -17,4 +17,11 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+x, y = MAP()
 
+mi = min(x, y)
+ma = max(x, y)
+if ma - mi <= 2:
+    print("Yes")
+else:
+    print("No")

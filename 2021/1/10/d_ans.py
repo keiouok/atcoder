@@ -17,14 +17,23 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-A = LIST()
-B = LIST()
+N, C = MAP()
+L = [LIST() for i in range(N)]
 
-ans = 0
+event = []
 for i in range(N):
-    ans += A[i] * B[i]
-if ans == 0:
-    print("Yes")
-else:
-    print("No")
+    a, b, c = L[i]
+    a -= 1
+    event.append((a, c))
+    event.append((b, -c))
+    
+event.sort()
+ans = 0
+fee = 0
+t = 0
+for x, y in event:
+    if x != t:
+        ans += min(C, fee) * (x - t)
+        t = x
+    fee += y
+print(ans)

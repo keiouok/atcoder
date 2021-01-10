@@ -17,14 +17,6 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-A = LIST()
-B = LIST()
+X, K, D = MAP()
 
-ans = 0
-for i in range(N):
-    ans += A[i] * B[i]
-if ans == 0:
-    print("Yes")
-else:
-    print("No")
+    
