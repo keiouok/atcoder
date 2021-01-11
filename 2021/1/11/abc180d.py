@@ -16,7 +16,20 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+from decimal import Decimal
 
+# 16:00 - 16:28
+X, Y, A, B = MAP()
+exp = 0
 
+# XがA倍される，が，XにB足される以下ならばそちらを増やした方が経験値は上がる．
+# AtCoder Gymの方が入るpowerが小さいなら，AtCoder Gymの方がいい
+while A * X <= X + B and A * X < Y:
+    X *= A
+    exp += 1
 
-
+# 残りはAtCoder Gymに任せる
+power = Y - 1 - X
+# Y以上がダメという点に注意！
+exp += power // B
+print(exp)

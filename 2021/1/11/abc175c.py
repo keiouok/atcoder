@@ -17,6 +17,26 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 11:40-11:52
+X, K, D = MAP()
 
+# k = X // D
+ma = K * D
 
+# 正化
+if X < 0:
+    X *= -1
+
+if X >= ma:
+    ans = X - ma
+else:
+    n = X // D
+    rd = X % D
+    ld = D - rd
+    if n % 2 == K % 2:
+        ans = rd
+    else:
+        ans = ld
+
+print(ans)    
 

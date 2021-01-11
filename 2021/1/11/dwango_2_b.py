@@ -17,6 +17,27 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 12:02-12:14
+N = INT()
+K = LIST()
 
+tmp = 0
+L = []
+L.append(K[0])
+cnt = 0
+for i in range(N-2):
+    l = K[i]
+    r = K[i+1]
+    b = L[i]
+    # if cnt % 2 == 0:
+    L.append(min(l, r))
+        # cnt += 1
+    # elif cnt % 2 != 0:
+        # L.append(max(l, r))
+        # cnt += 1
+L.append(K[-1])
+print(*L, sep=" ")
+
+        
 
 

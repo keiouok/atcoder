@@ -17,6 +17,25 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 18:14 - 18:21
+# 楽勝
+N, M = MAP()
+name = input()
+kit = input()
 
 
+dic = defaultdict(int)
 
+for k in kit:
+    dic[k] += 1
+
+C = Counter(name)
+ans = 0
+
+for n in name:
+    if dic[n] == 0:
+        print(-1)
+        exit()
+    else:
+        ans = max(ceil(C[n] / dic[n]), ans)
+print(ans)

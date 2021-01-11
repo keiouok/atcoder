@@ -17,6 +17,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 17:09
+x, y = MAP()
 
-
-
+if x * y < 0:
+    ans = 1 + abs(abs(x) - abs(y))
+elif x == 0 or y == 0:
+    if x < y:
+        ans = max(abs(x), abs(y))
+    else:
+        ans = max(abs(x), abs(y)) + 1
+else:
+    # 正負一緒
+    if y > x:
+        ans = y - x
+    else:
+        # print(2 + abs(abs(x) - abs(y)))
+        # print(2 + x - y)
+        ans = 2 + x - y
+print(ans)

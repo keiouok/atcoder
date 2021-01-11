@@ -17,6 +17,21 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+# 12:17 - 12:28
+N = INT()
+S = [input() for i in range(N)]
 
-
+L = []
+dic = defaultdict(str)
+for s in S:
+    # dic[s]
+    l = list(s)
+    # reversed(l)
+    l.reverse()
+    rs = "".join(l)
+    dic[rs] = s
+dic = sorted(dic.items(), key=lambda pair: pair[0], reverse=False)
+# print(dic)
+for k, v in dic:
+    print(v)
 
