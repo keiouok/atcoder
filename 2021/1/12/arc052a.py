@@ -17,5 +17,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-print(10 ** N + 7)
+S = input()
+ans = ""
+
+for i in range(len(S)):
+    if S[i] in [str(i) for i in range(0, 10)]:
+        ans += S[i]
+print(ans)

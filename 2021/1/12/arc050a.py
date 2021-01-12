@@ -12,10 +12,11 @@ def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
 def MAP(): return map(int, input().split())
 def LIST(): return list(map(int, input().split()))
+def S_MAP(): return map(str, input().split())
 def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-print(10 ** N + 7)
+C, c = S_MAP()
+print("Yes" if C.lower() == c.lower() else "No")

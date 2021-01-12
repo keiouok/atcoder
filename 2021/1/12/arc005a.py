@@ -17,5 +17,6 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-print(10 ** N + 7)
+H, W = MAP()
+
+print(H * (W - 1) + (H - 1) * W)
