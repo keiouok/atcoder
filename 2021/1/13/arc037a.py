@@ -17,4 +17,11 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+M = LIST()
+ans = 0
 
+for m in M:
+    if m < 80:
+        ans += 80 - m
+print(ans)

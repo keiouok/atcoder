@@ -17,4 +17,36 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+def is_prime(n):
+    for i in range(2, n+1):
+        if i * i > n:
+            break
+        if n % i == 0:
+            return False
+    return n != 1
+
+def divisor(n): #nの約数を全て求める
+    i = 1
+    table = []
+    while i * i <= n:
+        if n%i == 0:
+            table.append(i)
+            table.append(n//i)
+        i += 1
+    table = list(set(table))
+    return table
+
+N = INT()
+# print(divisor(N))
+if is_prime(N):
+    print("Prime")
+    exit()
+elif len(divisor(N)) > 2:
+    l = list(str(N))
+    l = [int(y) for y in l]
+    if (N % 10) % 2 != 0 and (N % 10) % 5 != 0 and sum(l) % 3 != 0:
+        print("Prime")
+        exit()
+print("Not Prime")
+
 

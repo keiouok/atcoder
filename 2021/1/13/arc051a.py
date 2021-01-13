@@ -17,4 +17,26 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+x1, y1, r = MAP()
+x2, y2, x3, y3 = MAP()
 
+import numpy as np
+
+def dist(p1, p2):
+    return np.linalg.norm(np.array(p1)-np.array(p2))    
+
+c = (x1, y1)
+p1 = (x2, y2)
+p2 = (x2, y3)
+p3 = (x3, y2)
+p4 = (x3, y3)
+
+if x2 <= x1 - r and x1 + r <= x3 and y2 <= y1 - r and y1 + r <= y3:
+    print("NO")
+    print("YES")
+elif max([dist(c, p1), dist(c, p2), dist(c, p3), dist(c, p4)]) <= r:
+    print("YES")
+    print("NO")
+else:
+    print("YES")
+    print("YES")
