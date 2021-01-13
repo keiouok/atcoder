@@ -17,9 +17,15 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+A = INT()
 
+for k in range(10, 10001):
+    tmp = 0
+    for i, x in enumerate(str(k)[::-1]):
+        tmp += int(x) * pow(k, i)
+    if tmp == A:
+        print(k)
+        break
 
-
-
-
-
+else:
+    print(-1)

@@ -17,9 +17,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+A = LIST()
 
-
-
-
-
+# xor = lambda x, y: x^y
+# ret = reduce(xor, A)
+# print("No" if ret else "Yes")
 

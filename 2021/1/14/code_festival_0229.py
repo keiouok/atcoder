@@ -17,6 +17,17 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+A, B = MAP()
+
+def urum(n):
+    # 1 - n 年のうるう年の数を数えます 
+    a = n // 4
+    b = n // 100
+    c = n // 400
+    d = a - (b - c)
+    return d
+
+print(urum(B) - urum(A - 1))
 
 
 
