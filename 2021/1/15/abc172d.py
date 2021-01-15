@@ -17,21 +17,11 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-R, G, B, N = MAP()
+N = INT()
+ans = 0
 
+for i in range(1, N + 1):
+    n = N // i
+    ans += i * (n + 1) * n // 2
 
-b_max = N // B
-cnt = 0
-for b in range(0, b_max+1):
-    amari = N - B * b
-    g_max = amari // G
-    G * g_
-    for g in range(0, g_max+1):
-        sa = amari - G * g
-        if sa >= 0:
-            r = sa / R
-            if r >= 0 and r == int(r):
-                cnt += 1
-print(cnt)
-            
-
+print(ans)
