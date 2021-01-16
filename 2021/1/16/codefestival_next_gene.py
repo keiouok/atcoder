@@ -17,8 +17,26 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+S = input()
 
-
-
-
-
+S = S.split()
+ans = set()
+B = set()
+for s in S:
+    i = 0
+    while i < len(s):
+        b = ""
+        if s[i] == "@":
+            i += 1
+            while i < len(s):
+                if s[i] == "@":
+                    break
+                b += s[i]
+                i += 1
+            if b.find("0123456789") == -1 and len(b) != 0:
+                B.add(b)
+        else:
+            i += 1
+B = list(B)
+B.sort()
+print(*B, sep="\n")

@@ -16,9 +16,31 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+from math import gcd
 
+N, M = MAP()
+S = input()
+T = input()
 
+def many_lcm(l):
+    tmp = l[0]
+    for i in range(1, len(l)):
+        tmp = tmp * l[i]//gcd(tmp, l[i])
+    return tmp
 
+L = many_lcm([N, M])
+# print(L)
 
+for i in range(0, N):
+    j = i * (L // N)
+    print(j)
 
+print("a")
+for i in range(0, M):
+    j = i * (L // M)
+    print(j)
+
+n = N // gcd(N, M)
+m = M // gcd(N, M)
+g = gcd(N, M)
 
