@@ -17,4 +17,16 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+H = LIST()
+
+dp = [0] * N
+
+for i in range(1, N):
+    if i == 1:
+        dp[i] = dp[i-1] + abs(H[i] - H[i-1])
+    else:
+        dp[i] = min(dp[i-1]+abs(H[i]-H[i-1]), dp[i-2]+abs(H[i]-H[i-2]))
+print(dp[N-1])
+
 

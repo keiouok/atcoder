@@ -17,4 +17,31 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, K = MAP()
+A = LIST()
 
+A.sort()
+# print(A)
+
+dic = defaultdict(int)
+
+for a in A:
+    dic[a] += 1
+
+L = [-1] * K
+D = defaultdict(int)
+
+D[-1] = K
+for k, v in dic.items():
+    if D[k-1] <= v:
+        D[k] += D[k-1]        
+        D[k-1] = 0
+    elif D[k-1] > v:
+        D[k] += v
+        D[k-1] = D[k-1] - v
+
+ans = 0
+for k, v in D.items():
+    if v > 0:
+        ans += (k + 1) * v
+print(ans)

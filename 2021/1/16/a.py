@@ -18,7 +18,17 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 
+N = INT()
+A = LIST()
+B = LIST()
+a = 0
+b = 0
 
-
-
-
+print(A[0] * B[0])
+c = A[0] * B[0]
+for i in range(1, N):
+    a = max(a, A[i-1])
+    b = max(b, B[i-1])
+    c = max(a * B[i], A[i] * B[i], c)
+    # print(max(max(a, A[i]) * B[i], a * b))
+    print(c)
