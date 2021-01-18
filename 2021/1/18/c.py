@@ -17,4 +17,12 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+A = []
 
+for i in range(1, 555556):
+    s = str(i)
+    l = len(Counter(s))
+    if l == 1:
+        A.append(s)
+print(A[N-1])  

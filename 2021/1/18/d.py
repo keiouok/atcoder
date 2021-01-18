@@ -17,4 +17,9 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+A = []
 
+a = str((N - 1) % 9 + 1)
+t = (N - 1) // 9 + 1
+print(a * t)
