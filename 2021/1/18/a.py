@@ -27,7 +27,7 @@ L = deque(L)
 # for i, s in enumerate(S):
 i = 0
 
-print(len(S))
+# print(len(S))
 while i <= len(S):
     if i == L[0]:
         a = L.popleft()

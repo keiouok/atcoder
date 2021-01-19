@@ -17,4 +17,13 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-
+S = input().split()
+L = []
+for s in S:
+    if s == "Left":
+        L.append("<")
+    elif s == "Right":
+        L.append(">")
+    else:
+        L.append("A")
+print(*L, sep=" ")

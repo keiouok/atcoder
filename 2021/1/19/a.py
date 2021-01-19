@@ -17,4 +17,17 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, L = MAP()
+S = input()
 
+cnt = 0
+clash = 0
+for s in S:
+    if s == "+":
+        cnt += 1
+    elif s == "-":
+        cnt = max(0, cnt - 1)
+    if cnt == L:
+        cnt = 0
+        clash += 1
+print(clash)
