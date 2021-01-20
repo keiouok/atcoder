@@ -20,5 +20,12 @@ mod = 10 ** 9 + 7
 x, y = MAP()
 k = INT()
 ans = 0
-ans = x + min(y, k)
-print(ans)
+# ans = x + min(y, k)
+# print(ans)
+
+if y <= k:
+    x += y
+    k -= y
+    print(x - k)
+else:
+    print(x + k)
