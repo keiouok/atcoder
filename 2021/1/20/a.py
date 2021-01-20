@@ -17,4 +17,8 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-
+x, y = MAP()
+k = INT()
+ans = 0
+ans = x + min(y, k)
+print(ans)
