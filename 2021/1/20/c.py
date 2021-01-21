@@ -10,11 +10,14 @@ from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
 def INT(): return int(input())
-def MAP(): return map(int, input().split())
+def MAP(): return map(str, input().split())
 def LIST(): return list(map(int, input().split()))
 def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+a, b, c = MAP()
+
+print(a[0]+b[0]+c[0])
 

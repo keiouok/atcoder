@@ -1,20 +1,28 @@
-import sys, re
-from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
-from itertools import accumulate, permutations, combinations, product
-from operator import itemgetter, mul
-from copy import deepcopy
-from string import ascii_lowercase, ascii_uppercase, digits
-from bisect import bisect, bisect_left
-from heapq import heappush, heappop
-from functools import reduce
-def input(): return sys.stdin.readline().strip()
-def INT(): return int(input())
-def MAP(): return map(int, input().split())
-def LIST(): return list(map(int, input().split()))
-def ZIP(n): return zip(*(MAP() for _ in range(n)))
-sys.setrecursionlimit(10 ** 9)
-INF = float('inf')
-mod = 10 ** 9 + 7
-
-
+from pulp import * # pip install pulp
+n, r = len(kw), range(len(kw))
+m = LpProblem(sense=LpMaximize) # 数理モデル
+x = [[0 if kw[i][-1] != kw[j][0] else LpVariable('x%d_%d'%(i,j), cat=LpBinary)
+      for j in r] for i in r] # kw_i から kw_j に繋げるかどうか (1)
+y = [LpVariable('y%d'%i, lowBound=0) for i in r] # kw_iが先頭かどうか (2)
+z = [LpVariable('z%d'%i, lowBound=0) for i in r] # kw_iの順番 (3)
+m += lpSum(x[i][j] for i in r for j in r) # なるべく繋げる (0)
+for i in r:
+    cou = lpSum(x[i][j] for j in r) # kw_i から出る数
+    cin = lpSum(x[j][i] for j in r) # kw_i へ入る数
+    m += cou <= 1 # kw_i から出る数は1以下 (4)
+    m += cin <= 1 # kw_i へ入る数は1以下 (5)
+    m += cou <= cin + y[i] # yに関する制約 (6)
+    for j in r:
+        m += z[i] <= z[j]-1+(n+1)*(1-x[i][j]) # zに関する制約 (7)
+m += lpSum(y) == 1 # 先頭は1つだけ (8)
+# %time m.solve() # 求解
+print(int(value(m.objective)) + 1) # 最長しりとり数
+rr = range(1,n+1)
+vx = np.vectorize(value)(x).astype(int)
+i, s = 0, int(np.vectorize(value)(y)@rr)
+while s:
+    if i:
+        print(' -> ', end='')
+    i += 1
+    print('[%d]%s'%(i,kw[s-1]), end=' ')
+    s = vx[s-1]@rr

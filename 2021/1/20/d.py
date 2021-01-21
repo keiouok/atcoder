@@ -17,4 +17,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+S = [input() for i in range(N)]
 
+last = ""
+ans = INF
+for s in S:
+    if last == s[0] or last == "":
+        last = s[-1]
+        ans = min(len(s), ans)
+    elif last == "ん":
+        print(-1)
+        exit()
+    else:
+        print(-1)
+        exit()
+if last == "ん":
+    print(ans)
+else:
+    print(-1)
