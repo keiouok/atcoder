@@ -17,4 +17,13 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+y = input()
 
+L = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+if y in ['Saturday', 'Sunday']:
+    print(0)
+else:
+    for i, x in enumerate(L):
+        if x == y:
+            c = i
+    print(5-c)       
