@@ -17,3 +17,13 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, S, D = MAP()
+L = [LIST() for i in range(N)]
+
+for a, b in L:
+    if a < S and b > D:
+        print("Yes")
+        exit()
+print("No")
+    

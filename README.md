@@ -262,7 +262,7 @@ def binary_search(x):
             left = mid
     return min(left, 10 ** 9)
 ```
-
+****
 ## UnionFind(強い方を新調)
 ```
 class UnionFind():

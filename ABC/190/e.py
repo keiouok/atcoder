@@ -17,3 +17,23 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N = INT()
+A = LIST()
+q = deque(A)
+print(q)
+ruiseki = [0] * N
+for a in A:
+    ruiseki[a] += 1
+print(ruiseki)
+
+
+
+for i in range(N - 1):
+    ruiseki[i+1] += ruiseki[i]
+
+print(ruiseki)
+for k in range(N-1):
+    left = q.popleft()
+    q.append(left)
+    print(q)
