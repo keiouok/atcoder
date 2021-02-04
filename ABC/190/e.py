@@ -27,8 +27,6 @@ for a in A:
     ruiseki[a] += 1
 print(ruiseki)
 
-
-
 for i in range(N - 1):
     ruiseki[i+1] += ruiseki[i]
 

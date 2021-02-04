@@ -17,4 +17,32 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N = INT()
+P = LIST()
+
+mi = 0
+memo = defaultdict(int)
+for i in range(N):
+    # if mi < P[i] and memo[mi] == 0:
+    # if mi != P[i]:
+    #     print(mi)
+    #     continue
+    #     memo[P[i]] = 1
+    memo[P[i]] = 1
+    if memo[mi] == 0:
+        print(mi)
+        
+    else:
+        while memo[mi] == 1:
+            mi += 1
+
+        print(mi)
+    # print(memo, mi)
+    
+
+
+
+
+
+
 

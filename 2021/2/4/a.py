@@ -17,4 +17,15 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+L = [INT() for i in range(5)]
+k = INT()
+L = sorted(L)
+
+for i in range(5):
+    for j in range(i+1, 5):
+        if L[j] - L[i] > k:
+            print(":(")
+            exit()
+print("Yay!")
+
 

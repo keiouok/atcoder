@@ -17,4 +17,15 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-
+S = INT()
+dp = [0] * (S + 1)
+for n in range(0, S+1):
+    if n == 0:
+        dp[0] = 1
+    elif n == 1:
+        dp[1] = 0
+    elif n == 2:
+        dp[2] = 0
+    else:
+        dp[n] = (dp[n-3] + dp[n-1]) % mod
+print(dp[S] % mod)
