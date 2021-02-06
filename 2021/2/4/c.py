@@ -18,7 +18,7 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 S = INT()
-dp = [0] * (S + 1)
+dp = [0] tmux* (S + 1)
 for n in range(0, S+1):
     if n == 0:
         dp[0] = 1
