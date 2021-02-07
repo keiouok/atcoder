@@ -17,3 +17,14 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, X = MAP()
+A = LIST()
+
+ans = []
+for a in A:
+    if a == X:
+        continue
+    else:
+        ans.append(str(a)) 
+print(*ans, sep=" ")

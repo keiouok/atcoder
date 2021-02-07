@@ -18,3 +18,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+V, T, S, D = MAP()
+
+if T * V <= D <= S * V:
+    print("No")
+else:
+    print("Yes")
+
