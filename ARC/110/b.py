@@ -18,32 +18,51 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-T = input()
+B, C = MAP()
 
-a = N // 3
-b = N % 3
-cnt = 0
+up_max = C // 1
+down_max = C // 2 # only down
+# print(up_max, down_max)
 
-if T == "1":
-    print(2 * 10 ** 10)
-    exit()
-elif T == "11":
-    print(10 ** 10)
-    exit()
-for s in ["110", "101", "011"]:
-    a = N // 3
-    b = N % 3
-    if T == a * s + s[:b]:
-        cnt += 1
+# print(B - down_max + 1)
+# minu = B - down_max 
+# print(minu)
 
-if cnt == 0:
-    print(0)
-    exit()
-    # Tは必ず0を含む
-else:
-    K = Counter(T)["0"]
-    if T[-1] == "0":
-        print(10 ** 10 - K + 1)
-    elif T[-1] == "1":
-        print(10 ** 10 - K)
+# BがmunusならこれでOK
+# マイナス部分の反射
+# if minu <= -1:
+# minu = B - down_max
+# print(minu)
+if B < 0:
+    if C % 2 == 0:
+        minu = B - down_max
+        ref = abs(minu) * 2
+    # 一個残す
+    elif C % 2 == 1:
+        minu = B - down_max - 1
+        ref = abs(minu) * 2
+elif B == 0:
+    if C % 2 == 0:
+        minu = B - down_max
+        ref = abs(minu) * 2
+    # 一個残す
+    elif C % 2 == 1:
+        minu = B - down_max - 1
+        ref = abs(minu) * 2
+elif B > 0:
+    # minu = B - down_max
+    # if minu <= 0:
+    # print(minu)
+    # abs(minu)
+    if C % 2 == 0:
+        minu = - B - down_max
+        ref = abs(minu) * 2
+    # 一個残す
+    elif C % 2 == 1:
+        minu = - B - down_max
+        ref = abs(minu) * 2
+print(ref)
+
+
+
+

@@ -18,33 +18,60 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-P = LIST()
-flag = True
-now = 0
-x = 1
-ans = []
-for i in range(N):
-    if P[i] == i + 1:
-        print(-1)
-        exit()
-    if P[i] == x:
-        P[now:i+1] = [x] + P[now:i]
-        for j in range(now, i):
-            if P[j] != j + 1:
-                print(-1)
-                exit()
-            else:
-                for k in range(i, now, -1):
-                    ans.append(k)
-                now = i
-                x = i + 1
-                # 後半の部分でnow(index)と数が同じなら無理
-                # now == N - 1ならOK，最後だから同じでOK
-                if P[now] == x and now != N - 1:
-                    print(-1)
-                    exit()
-print(*ans, sep="\n")
+B, C = MAP()
+
+up_max = C // 1
+down_max = C // 2 # only down
+
+if B > 0:
+    if B < C:
+        
+
+        
+
+
+
+
+
+
+
+
+exit()
+if B < 0:
+    minu = B - down_max
+    ref = abs(minu) * 2
+    # # 一個残す
+    # elif C % 2 == 1:
+    #     minu = B - down_max - 1
+    #     ref = abs(minu) * 2
+elif B == 0:
+    # if C % 2 == 0:
+    minu = B - down_max
+    ref = abs(minu) * 2
+    # # 一個残す
+    # elif C % 2 == 1:
+    #     minu = B - down_max - 1
+    #     ref = abs(minu) * 2
+elif B > 0:
+    # minu = B - down_max
+    # if minu <= 0:
+    # print(minu)
+    # abs(minu)
+    # if C % 2 == 0:
+    if B <= C:
+        minu = - B - down_max
+        # print(minu)
+        ref = abs(minu) * 2
+    elif B > C:
+        minu = - B - down_max
+        print(minu)
+        ref = abs(minu) * 2
+
+    # 一個残す
+    # elif C % 2 == 1:
+    #     minu = - B - down_max
+    #     ref = abs(minu) * 2
+print(ref)
 
 
 
