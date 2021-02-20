@@ -17,3 +17,17 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+S = input()
+
+for i, s in enumerate(S):
+    if i % 2 == 0:
+        if s.isupper():
+            print("No")
+            exit()
+
+    else:
+        if s.islower():
+            print("No")
+            exit()
+print("Yes")

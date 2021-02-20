@@ -17,3 +17,24 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+N, K = MAP()
+
+l = list(str(N))
+
+small = int("".join(sorted(l)))
+large = int("".join(sorted(l, reverse=True)))
+# print(a, b)
+
+# a = N
+a = N
+# print(l)
+for i in range(K):
+    l = list(str(a))
+    small = int("".join(sorted(l)))
+    large = int("".join(sorted(l, reverse=True)))
+    # print(large - small)
+    # print(small, large)
+    a = large - small
+print(a)
+
