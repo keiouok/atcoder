@@ -17,7 +17,28 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A, B, C = MAP()
+A, B, X = MAP()
 
-last = int(str(A)[-1])
-print(last)
+def solve(N):
+    return A * N + B * len(str(N))
+
+ok = 0
+ng = pow(10, 18) + 1
+
+# 全部買える場合
+if solve(10 ** 9) <= X:
+    print(10 ** 9)
+# 壱個も変えない
+# elif solve(1) > X:
+#     print(0)
+
+else:
+    while (ng - ok) > 1:
+        mid = (ng + ok) // 2
+        if solve(mid) <= X:
+            ok = mid
+        else:
+            ng = mid
+
+    # print(ok, ng, mid)
+    print(ok)
