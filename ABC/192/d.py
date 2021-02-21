@@ -18,17 +18,40 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-X = INT()
+def solve(n):
+    # num = n進法で表したX
+    # num <= M かどうかを返す
+    # グローバル変数として定義する
+    global X, M
+    base = 1
+    num = 0
+    for x in X:
+        num += x * base
+        if num > M:
+            # 超えた地点で終了
+            return False
+        base *= n
+    return True
+
+# 構造理解
+X = list(map(int, list(input())))
+X.reverse() # 桁とindexを一致
 M = INT()
-S = str(X)
-L = list(S)
-L = [int(L[i]) for i in range(len(S))]
-d = max(L)
-print(d)
+d = max(X)
 
-# ここから上のn進数しかない
-d + 1
+if len(X) == 1:
+    print(1 if d <= M else 0)
+    exit()
 
+ok = 0
+ng = pow(10, 18) + 1
+# 右端は10 ** 18でいいのだ
 
-for i, s in enumerate(S):
-    
+# 型を覚えよ
+while abs(ok - ng) > 1:
+    mid = (ok + ng) // 2
+    if solve(mid):
+        ok = mid
+    else:
+        ng = mid
+print(max(0, ok - d))

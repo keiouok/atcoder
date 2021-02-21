@@ -599,3 +599,43 @@ print(*["".join(a) for a in A], sep="\n")
 ```
 print(max(*[dp[N][j] for j in range(3)]))
 ```
+
+## num = Xのn進数を返す関数
+二進数だと，baseが1,2,4,8,16...を表す．
+
+`X.reverse()`で逆にしておくこと．
+
+ABC192D
+```
+def f(n):
+    # num = n進法で表したX
+    # num <= M かどうかを返す
+    # グローバル変数として定義する
+    global X, M
+    base = 1
+    num = 0
+    for x in X:
+        num += x * base
+        if num > M:
+            # 超えた地点で終了
+            return False
+        base *= n
+    return True
+```
+
+## 二分探索 壱の型
+ABC192D
+```
+ok = 0
+ng = pow(10, 18) + 1
+# 右端は10 ** 18でいいのだ
+
+# 型を覚えよ
+while abs(ok - ng) > 1:
+    mid = (ok + ng) // 2
+    if f(mid):
+        ok = mid
+    else:
+        ng = mid
+print(max(0, ok - d))
+```
