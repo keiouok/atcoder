@@ -46,23 +46,6 @@ cnt = 0
 
 D = divisor(K)
 D.sort(reverse=True)
-# D.sort()
-# for i in range(len(D)):
-#     D[i]
-
-# exit()
-
-# for i in range(len(D)-1):
-#     print(D)
-#     bc_max = K // D[i] # small
-#     bc_max_n = K // D[i+1] # big
-#     l = bc_max_n - bc_max
-#     r = D[i] - D[i+1]
-#     cnt += l * r
-# print(cnt)
-
-# exit()
-# len()
 print(D)
 for i, d in enumerate(D):    
     bc_max = K // d
