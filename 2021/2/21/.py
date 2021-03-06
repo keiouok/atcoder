@@ -18,28 +18,23 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 N = INT()
-A = LIST()
+L = [LIST() for i in range(N)]
 
-tmp = 0
-for a in A:
-    tmp += a**2
+L = sorted(L)
+A = []
+for l in L:
+    A.append(sum(l))
+# print(A)
+B = sorted(L, key=lambda x: x[0])
+C = sorted(B, key=lambda x: x[1]) # 1番目の要素でソート
+# q = deque(C)
 
-sum = A[-1]
-tmp2 = 0
-for i in range(N-1):
-    # print(A[N-i-1-1], sum)
-    y = A[N-i-1-1]
-    tmp2 += sum * y
-    sum += y
+D = sorted(L, key=lambda x: x[1])
+E = sorted(D, key=lambda x: x[0])
 
-ans = (N-1) * tmp + (-2) * tmp2
+# print(E, C)
+# print(q)
+# left, right = q.popleft()
 
-
+ans = min(min(A) , max(C[0][0], C[1][1]), max(E[0][1], E[1][0]))
 print(ans)
-# tmp2 = 0
-# for i in range(N-1):
-#     tmp2 += A[i] * A[i+1]
-# tmp2 += A[0] * A[-1]
-
-# ans += tmp * 2 - 2 * tmp2
-# print(ans)

@@ -16,30 +16,29 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
-
+ 
 N = INT()
-A = LIST()
+L = [LIST() for i in range(N)]
+ 
+L = sorted(L)
+A = []
+for l in L:
+    A.append(sum(l))
+# print(A)
+tmp1 = min(A)
+q = deque(L)
+# print(q)
+# first is smallest
 
-tmp = 0
-for a in A:
-    tmp += a**2
+C = sorted(L, key=lambda x: x[1]) # 1番目の要素でソート
+ 
+D = sorted(C, key=lambda x: x[0]) # 1番目の要素でソート
 
-sum = A[-1]
-tmp2 = 0
-for i in range(N-1):
-    # print(A[N-i-1-1], sum)
-    y = A[N-i-1-1]
-    tmp2 += sum * y
-    sum += y
-
-ans = (N-1) * tmp + (-2) * tmp2
-
-
+# print(C)
+# print(D)
+tmp2 = min(max(C[0][0], C[1][1]), max(C[1][0], C[0][1]))
+tmp3 = min(max(D[0][0], D[1][1]), max(D[1][0], D[0][1]))
+ans = min(tmp1, tmp2, tmp3)
+# # print(L[0][0], L[1][1])
+# ans = min(min(A) , max(C[0][0], C[1][1]), max(C[0][1], C[1][0]), max(1))
 print(ans)
-# tmp2 = 0
-# for i in range(N-1):
-#     tmp2 += A[i] * A[i+1]
-# tmp2 += A[0] * A[-1]
-
-# ans += tmp * 2 - 2 * tmp2
-# print(ans)

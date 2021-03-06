@@ -17,29 +17,12 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N = INT()
-A = LIST()
-
-tmp = 0
-for a in A:
-    tmp += a**2
-
-sum = A[-1]
-tmp2 = 0
-for i in range(N-1):
-    # print(A[N-i-1-1], sum)
-    y = A[N-i-1-1]
-    tmp2 += sum * y
-    sum += y
-
-ans = (N-1) * tmp + (-2) * tmp2
-
+K = INT()
+ans = 0
+for c in range(1, K+1):
+    ab = K // c
+    for b in range(1, ab+1):
+        a = ab // b
+        ans += a
 
 print(ans)
-# tmp2 = 0
-# for i in range(N-1):
-#     tmp2 += A[i] * A[i+1]
-# tmp2 += A[0] * A[-1]
-
-# ans += tmp * 2 - 2 * tmp2
-# print(ans)

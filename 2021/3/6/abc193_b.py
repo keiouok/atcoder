@@ -18,28 +18,14 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 N = INT()
-A = LIST()
 
-tmp = 0
-for a in A:
-    tmp += a**2
-
-sum = A[-1]
-tmp2 = 0
-for i in range(N-1):
-    # print(A[N-i-1-1], sum)
-    y = A[N-i-1-1]
-    tmp2 += sum * y
-    sum += y
-
-ans = (N-1) * tmp + (-2) * tmp2
-
-
-print(ans)
-# tmp2 = 0
-# for i in range(N-1):
-#     tmp2 += A[i] * A[i+1]
-# tmp2 += A[0] * A[-1]
-
-# ans += tmp * 2 - 2 * tmp2
-# print(ans)
+ans = 0
+s = set([])
+# dic = defaultdict(int)
+for a in range(2, int(sqrt(N)) + 1):
+    val = a * a
+    while val <= N:
+        # dic[val] = 1
+        s.add(val)
+        val *= a
+print(N - len(s))
