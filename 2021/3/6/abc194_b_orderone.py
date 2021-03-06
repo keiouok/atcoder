@@ -20,21 +20,22 @@ mod = 10 ** 9 + 7
 N = INT()
 L = [LIST() for i in range(N)]
 
-tmp = INF
-
 A = []
-for l in L:
-    A.append(sum(l))
-# print(A)
-a = min(A)
+B = []
 
 for i in range(N):
-    # tmp = L[i][0]
-    for j in range(N):
-        if i == j:
-            continue
-        b = max(L[i][0], L[j][1])
-        tmp = min(b, tmp)
+    A.append(L[i][0])
+    B.append(L[i][1])
 
-ans = min(a, tmp)
+i = A.index(min(A))
+j = B.index(min(B))
+
+if i == j:
+    a, b = A[i], B[i]
+    del A[i]
+    del B[i]
+    # print(A, B)
+    ans = min(a + b, max(min(A), b), max(a, min(B)))
+else:
+    ans = max(A[i], B[j])
 print(ans)
