@@ -17,3 +17,15 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+
+A, B, W = MAP()
+
+m = 10 ** 9
+M = 0
+
+for n in range(1, 10 ** 6 + 1):
+    if A * n <= 1000 * W <= B * n:
+        m = min(m, n)
+        M = max(M, n)
+
+print("UNSATISFIABLE" if M == 0 else "{} {}".format(m, M))    

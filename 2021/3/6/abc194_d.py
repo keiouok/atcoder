@@ -6,7 +6,6 @@ from operator import itemgetter, mul
 from copy import deepcopy
 from string import ascii_lowercase, ascii_uppercase, digits
 from bisect import bisect, bisect_left
-from fractions import gcd
 from heapq import heappush, heappop
 from functools import reduce
 def input(): return sys.stdin.readline().strip()
@@ -18,8 +17,9 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-M, H = MAP()
+N = INT()
 
-# if H % M = 0:
-#     print()
-print("Yes" if H % M == 0 else "No")
+ans = 0
+for i in range(1, N):
+    ans += N / (N - i)
+print(ans)
