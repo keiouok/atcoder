@@ -17,4 +17,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+x,y,z = MAP()
 
+a = y / x * z
+if int(a) == a:
+    print(int(a)-1)
+else:
+    print(int(a))

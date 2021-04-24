@@ -1,6 +1,6 @@
 import sys, re
 from collections import deque, defaultdict, Counter
-from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians
+from math import ceil, sqrt, hypot, factorial, pi, sin, cos, radians, gcd
 from itertools import accumulate, permutations, combinations, product
 from operator import itemgetter, mul
 from copy import deepcopy
@@ -17,4 +17,16 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+A, B = MAP()
+ma = 1
+for i in range(1, B+1):
+    a = ceil(A / i)
+    if a * i + i <= B:
+        ma = max(ma, i)
+
+    # b = B // i
+    # c = a * i
+    # d = b * i
+    # if A <= c <= B and A <= d <= B and c != d:
+print(ma)
 

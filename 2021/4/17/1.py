@@ -17,29 +17,12 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, M  = MAP()
-A = LIST()
-B = LIST()
+S = input()
 
-a = 0
-b = 0
+cnt = 0
+R = "CODEFESTIVAL2016"
+for i, s in enumerate(S):
+    if R[i] != s:
+        cnt += 1
 
-# while 1:
-#     if A[a] < B[a]:
-
-
-
-
-memo = [0] * (10 ** 3 + 1)
-
-for a in A:
-    memo[a] += 1
-for b in B:
-    memo[b] += 1
-
-ans = []
-for i in range(10 ** 3 + 1):
-    if memo[i] == 1:
-        ans.append(i)
-        # print(i, sep=" ")
-print(*ans, sep=" ")
+print(cnt)

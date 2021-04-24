@@ -17,29 +17,22 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-N, M  = MAP()
-A = LIST()
+N = INT()
 B = LIST()
 
-a = 0
-b = 0
+# for i, b in enumerate(B):
+cnt = 0
+# if N == 2:
+#     print(B[-1] * 2)
+#     exit()
 
-# while 1:
-#     if A[a] < B[a]:
+# else:
+for i in range(N-1):
+    # print(B[i], B[i+1])
+    if i == 0:
+        cnt += B[0]
+    else:
+        # if B[i] <= B[i+1]:
+        cnt += min(B[i-1], B[i])
 
-
-
-
-memo = [0] * (10 ** 3 + 1)
-
-for a in A:
-    memo[a] += 1
-for b in B:
-    memo[b] += 1
-
-ans = []
-for i in range(10 ** 3 + 1):
-    if memo[i] == 1:
-        ans.append(i)
-        # print(i, sep=" ")
-print(*ans, sep=" ")
+print(cnt+B[-1])
