@@ -17,14 +17,26 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A ,B  = MAP()
+N = INT()
+S = input()
+T = "atcoder"
+lent = len(T)
+# T = "chokudai"
+# N = len(S)
 
-c =  A + B
-d = A -  B
-if c <= d:
-    print(d)
-    print(c)
-else:
-    print(c)
-    print(d)
+dp = [[0] * (lent + 1) for i in range(N + 1)]
 
+dp[0][0] = 1
+
+for i in range(N + 1):
+    for j in range(lent + 1):
+        if j == 0:
+            dp[i][0] = 1
+        elif i == 0:
+            dp[0][j] = 0
+        elif S[i - 1] == T[j - 1]:
+            dp[i][j] = (dp[i - 1][j] + dp[i - 1][j - 1]) % mod
+        else:
+            dp[i][j] = dp[i - 1][j]
+
+print(dp[N][lent])

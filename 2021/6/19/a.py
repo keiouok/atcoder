@@ -17,4 +17,14 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+n = INT()
+
+x = 1.08 * n
+# print(x)
+if int(x) < 206:
+    print("Yay!")
+elif int(x) == 206:
+    print("so-so")
+else:
+    print(":(")
 

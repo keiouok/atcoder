@@ -18,3 +18,36 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 
+N = INT()
+L = [LIST() for i in range(N)]
+L.sort()
+L_a = sorted(L, key=lambda x: x[1]) # 0番目の要素でソート
+
+# print(L_a)
+L_new = []
+
+for i in range(N):
+    if L[i][0] == 4:
+        l = [L[i][1]+0.1, L[i][2]-0.1]
+    elif L[i][0] == 3:
+        l = [L[i][1]+0.1, L[i][2]]
+    elif L[i][0] == 2:
+        l = [L[i][1], L[i][2]-0.1]
+    elif L[i][0] == 1:
+        l = [L[i][1], L[i][2]]
+    L_new.append(l)
+
+L_new = sorted(L_new, key=lambda x: x[0]) # 0番目の要素でソート
+
+cnt = 0
+for i in range(N):
+    for j in range(i+1, N):
+        # print(i, j)
+        A_left, A_right = L_new[i]
+        B_left, B_right = L_new[j]
+        if A_left <= B_left <= A_right:
+            cnt += 1
+        else:
+            continue
+print(cnt)
+

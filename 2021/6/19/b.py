@@ -17,4 +17,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+n = INT()
+
+for i in range(1, 10 ** 5):
+    if i * (i + 1) >= 2 * n:
+        print(i)
+        exit()
 

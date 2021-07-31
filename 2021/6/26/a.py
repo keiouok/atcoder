@@ -17,4 +17,10 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+A, B, C, D = MAP()
 
+if D * C - B <= 0:
+    print(-1)
+else:
+    x = ceil(A / (D * C - B))
+    print(x)

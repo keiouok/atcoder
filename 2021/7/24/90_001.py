@@ -17,14 +17,21 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
-A ,B  = MAP()
+N, L = MAP()
+K = INT()
+A = LIST()
+A = [0] + A
+A.append(L)
+# print(A)
+ans = INF
 
-c =  A + B
-d = A -  B
-if c <= d:
-    print(d)
-    print(c)
-else:
-    print(c)
-    print(d)
+for i in range(N + 1):
+    le = A[i+1] - A[i]    
+    if ans > le:
+        ans = le
+
+print(ans)
+
+
+
 

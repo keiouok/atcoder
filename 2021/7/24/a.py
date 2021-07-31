@@ -18,3 +18,34 @@ INF = float('inf')
 mod = 10 ** 9 + 7
 
 
+S = input()
+ref = "chokudai"
+
+dic = defaultdict(list)
+
+for i, s in enumerate(S):
+    dic[s].append(i)
+
+# search leftest
+
+A = []
+for r in ref:
+    print(dic[r])
+    l = dic[r]
+    if r == "c":
+        leftest = l[0]
+        pr = r
+        A.append(leftest)
+    else:
+        index = bisect(l, leftest)
+        if leftest < l[index]:
+            leftest = l[index]
+            A.append(leftest)
+
+print(A)
+q = deque(S)
+
+while q:
+    a = q.popleft()
+    
+

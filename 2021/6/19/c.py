@@ -16,5 +16,18 @@ def ZIP(n): return zip(*(MAP() for _ in range(n)))
 sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
+N = INT()
+A = LIST()
 
+a = N * (N - 1) // 2
+dict = defaultdict(int)
+
+for x in A:
+    dict[x] += 1
+# print(a)
+for k,v in dict.items():
+    b = v * (v - 1) // 2
+    a -= b
+
+print(a)
 

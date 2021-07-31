@@ -17,4 +17,13 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+X, L, R = MAP()
 
+if X >= R:
+    # print(X - R)
+    print(R)
+elif L <= X < R:
+    print(X)
+elif X <= L:
+    # print(L - X)
+    print(L)

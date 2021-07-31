@@ -17,4 +17,14 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+N, M = MAP()
+A = LIST()
+B = LIST()
 
+cnt = 0
+for i in range(N):
+    for j in range(M):
+        if A[i] <= B[j]:
+            cnt += 1
+print(cnt)
+    

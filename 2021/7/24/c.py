@@ -17,4 +17,29 @@ sys.setrecursionlimit(10 ** 9)
 INF = float('inf')
 mod = 10 ** 9 + 7
 
+S = input()
+N = len(S)
+T = "chokudai"
+lent = len(T)
+
+dp = [[0] * (lent + 1) for i in range(N + 1)]
+
+dp[0][0] = 1
+
+for i in range(N + 1):
+    for j in range(lent + 1):
+        if j == 0:
+            dp[i][0] = 1
+        elif i == 0:
+            dp[0][j] = 0
+        elif S[i-1] == T[j-1]:
+            # print(S[i-1], T[j-1])
+            # notcorrect
+            # dp[i][j] = max(dp[i][j] + dp[i-1][j], dp[i][j] + dp[i-1][j-1])
+            # ans : 
+            dp[i][j] = (dp[i-1][j] + dp[i-1][j-1]) % mod
+        else:
+            dp[i][j] = dp[i-1][j]
+# print(dp)
+print(dp[N][lent])
 
