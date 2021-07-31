@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "atcoder"
+version = "0.1.0"
+description = ""
+authors = ["keiouok <ko.yuka.kp2@is.naist.jp>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.20.2"
+fairseq = {path = "../fairseq"}
+espnet = {path = "../espnet"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
